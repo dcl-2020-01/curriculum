@@ -1,0 +1,18 @@
+title: Tidy evaluation
+theme: program
+needs:
+- manip-scoped
+- function-basics
+
+desc: |
+  At some point during the quarter, you might have tried to write a function
+  that calls a dplyr verb and gotten errors. The dplyr verbs (and many other 
+  tidyverse functions) work differently than many other functions in R, and 
+  programming with them will require some new techniques. In this reading, 
+  you'll about tidy evaluation, which allows you to easily program with dplyr and
+  other tidyverse verbs.
+  
+readings: 
+- book: prog-12
+- book: prog-13
+- book: prog-14

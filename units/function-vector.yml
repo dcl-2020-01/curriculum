@@ -1,0 +1,10 @@
+title: Vector functions
+theme: program
+needs: [manip-basics, function-basics]
+desc: |
+  When you use R, you'll spend a lot of time working with vectors. Vector functions
+  make working with vectors easier by taking vectors as input and producing
+  vectors of the same length as output. 
+  
+readings:
+- book: prog-4

@@ -1,0 +1,119 @@
+title: Spatial basics
+theme: wrangle
+needs: manip-basics
+readings: ~
+updated: ~
+desc: "\n## Spatial packages\n\nIn R, there are two main lineages of tools for dealing
+  with spatial\ndata: sp and sf.\n\n  - sp has been around for a while (the first
+  release was in 2005), and\n    it has a rich ecosystem of tools built on top of
+  it. However, it\n    uses a rather complex data structure, which can make it challenging\n
+  \   to use.\n\n  - sf is newer (first released in October 2016) so it doesn’t have
+  such\n    a rich ecosystem. However, it’s much easier to use and fits in very\n
+  \   naturally with the tidyverse.\n\nThere’s a lot you can do with the sf package,
+  and it contains many more\nfunctions that we can cover in this reading. The sf package
+  [reference\npage](https://r-spatial.github.io/sf/reference/index.html) lists all
+  of\nthe functions in the package. There are also some helpful articles on\nthe [package
+  website](https://r-spatial.github.io/sf/), including\n[Simple Features for\nR](https://r-spatial.github.io/sf/articles/sf1.html)
+  and [Manipulating\nSimple Feature\nGeometries](https://r-spatial.github.io/sf/articles/sf3.html).\n\n##
+  Loading data\n\nTo read spatial data in R, use `read_sf()`. The following code reads
+  an\nexample dataset built into the sf package.\n\n``` r\nlibrary(tidyverse)\nlibrary(sf)\n\n#
+  The counties of North Carolina\nnc <- read_sf(system.file(\"shape/nc.shp\", package
+  = \"sf\"))\n```\n\nHere, `read_sf()` reads from a **shapefile**. Shapefiles are
+  the most\ncommon way to store spatial data. Despite the name, a shapefile is\nactually
+  a collection of files, not a single file. Each file in a\nshapefile has the same
+  name, but a different extension. Typically,\nyou’ll see four files:\n\n  - `.shp`
+  contains the geometry\n\n  - `.shx` contains an index into that geometry.\n\n  -
+  `.dbf` contains metadata about each geometry (the other columns in\n    the data
+  frame).\n\n  - `.prf` contains the coordinate system and projection information.\n
+  \   You’ll learn more about that shortly.\n\n`read_sf()` can read in the majority
+  of spatial file formats, and can\nlikely handle your data even if it isn’t in a
+  shapefile.\n\n## Data structure\n\n`read_sf()` reads in spatial data and creates
+  a tibble, so `nc` is a\ntibble.\n\n``` r\nclass(nc)\n#> [1] \"sf\"         \"tbl_df\"
+  \    \"tbl\"        \"data.frame\"\n```\n\n`nc` functions like an ordinary tibble
+  with one exception: the\n**geometry** column.\n\n``` r\nnc %>% \n  select(geometry)\n#>
+  Simple feature collection with 100 features and 0 fields\n#> geometry type:  MULTIPOLYGON\n#>
+  dimension:      XY\n#> bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698
+  ymax: 36.58965\n#> epsg (SRID):    4267\n#> proj4string:    +proj=longlat +datum=NAD27
+  +no_defs\n#> First 10 features:\n#>                          geometry\n#> 1  MULTIPOLYGON
+  (((-81.47276 3...\n#> 2  MULTIPOLYGON (((-81.23989 3...\n#> 3  MULTIPOLYGON (((-80.45634
+  3...\n#> 4  MULTIPOLYGON (((-76.00897 3...\n#> 5  MULTIPOLYGON (((-77.21767 3...\n#>
+  6  MULTIPOLYGON (((-76.74506 3...\n#> 7  MULTIPOLYGON (((-76.00897 3...\n#> 8  MULTIPOLYGON
+  (((-76.56251 3...\n#> 9  MULTIPOLYGON (((-78.30876 3...\n#> 10 MULTIPOLYGON (((-80.02567
+  3...\n```\n\nThe `geometry` column contains **simple features**. Simple features
+  are\na standard way of representing geometry types. The most basic geometry\ntypes
+  are point, linestring, and polygon.\n\n![](spatial-basics_files/figure-gfm/unnamed-chunk-4-1.png)<!--
+  -->\n\nThere are also *multi* variants of these basic types: multipoint,\nmultilinestring,
+  and multipolygon. These multi types can contain\nmultiple points, linestrings, or
+  polygons. The final type, geometry\ncollection, can contain multiple different types
+  (e.g., points,\nlinestrings, and multipolygons).\n\nYou can build up complex spatial
+  visualizations using just these\ngeometry types. A point, for example, could represent
+  a city, a\nmultilinestring could represent a branching river, and a multipolygon\ncould
+  represent a country composed of different islands.\n\n`nc`’s `geometry` column contains
+  multipolygons.\n\n``` r\nnc$geometry\n#> Geometry set for 100 features \n#> geometry
+  type:  MULTIPOLYGON\n#> dimension:      XY\n#> bbox:           xmin: -84.32385 ymin:
+  33.88199 xmax: -75.45698 ymax: 36.58965\n#> epsg (SRID):    4267\n#> proj4string:
+  \   +proj=longlat +datum=NAD27 +no_defs\n#> First 5 geometries:\n#> MULTIPOLYGON
+  (((-81.47276 36.23436, -81.54084 3...\n#> MULTIPOLYGON (((-81.23989 36.36536, -81.24069
+  3...\n#> MULTIPOLYGON (((-80.45634 36.24256, -80.47639 3...\n#> MULTIPOLYGON (((-76.00897
+  36.3196, -76.01735 36...\n#> MULTIPOLYGON (((-77.21767 36.24098, -77.23461 3...\n```\n\nYou
+  can use `plot()` to visualize the `geometry` column.\n\n``` r\nplot(nc$geometry)\n```\n\n![](spatial-basics_files/figure-gfm/nc-plot-1.png)<!--
+  -->\n\nEach row in `nc` represents a single county. If you pull out a single\nrow
+  and plot, you’ll get the shape of a single county.\n\n``` r\nalleghany <- \n  nc
+  %>% \n  filter(NAME == \"Alleghany\")\n\nplot(alleghany$geometry)\n```\n\n![](spatial-basics_files/figure-gfm/unnamed-chunk-6-1.png)<!--
+  -->\n\n`plot()` works, but is limited. In the next unit, you’ll learn how to\nuse
+  ggplot2 to create more complex spatial visualizations.\n\n### Geometry\n\nLet’s
+  dive a little deeper into the structure of the `geometry` column.\nThe `geometry`
+  column is a **list-column**. You’re used to working with\ntibble columns that are
+  atomic vectors, but columns can also be lists.\nList columns are incredibly flexible
+  because a list can contain any\nother type of data structure, including other lists.\n\n```
+  r\ntypeof(nc$geometry)\n#> [1] \"list\"\n```\n\nLet’s pull out one row of the `geometry`
+  column so you can see what’s\ngoing on under the hood.\n\n``` r\ncurrituck <- \n
+  \ nc %>% \n  filter(NAME == \"Currituck\")\n\ncurrituck_geometry <- currituck$geometry[[1]]\n```\n\nCurrituck
+  county is made up of three separate landmasses.\n\n``` r\nplot(currituck_geometry)\n```\n\n![](spatial-basics_files/figure-gfm/unnamed-chunk-9-1.png)<!--
+  -->\n\nHow does a single row of the `geometry` column represent these three\nseparate
+  shapes? It turns out that each element of `nc`’s `geometry`\ncolumn, including `currituck$geometry`,
+  is actually a list of lists of\nmatrices.\n\n``` r\nglimpse(currituck_geometry)\n#>
+  List of 3\n#>  $ :List of 1\n#>   ..$ : num [1:26, 1:2] -76 -76 -76 -76 -76.1 ...\n#>
+  \ $ :List of 1\n#>   ..$ : num [1:7, 1:2] -76 -76 -75.9 -75.9 -76 ...\n#>  $ :List
+  of 1\n#>   ..$ : num [1:5, 1:2] -75.9 -75.9 -75.8 -75.8 -75.9 ...\n#>  - attr(*,
+  \"class\")= chr [1:3] \"XY\" \"MULTIPOLYGON\" \"sfg\"\n```\n\nThe top-level list
+  represents landmasses, and has one element for each\nlandmass in the county. Currituck
+  county has three landmasses, and so\nhas three sub-lists.\n\nIn our data, each of
+  these sub-lists only has a single element.\n\n``` r\nmap_int(currituck_geometry,
+  length)\n#> [1] 1 1 1\n```\n\nThese sub-lists would contain multiple elements if
+  they needed to\nrepresent a landmass that contained an lake, or a landmass that\ncontained
+  a lake with an island, etc.\n\nEach of these elements is a matrix that gives the
+  locations of points\nalong the polygon boundaries.\n\n``` r\ncurrituck_geometry[[2]][[1]]\n#>
+  \          [,1]     [,2]\n#> [1,] -76.02717 36.55672\n#> [2,] -75.99866 36.55665\n#>
+  [3,] -75.91192 36.54253\n#> [4,] -75.92480 36.47398\n#> [5,] -75.97728 36.47802\n#>
+  [6,] -75.97629 36.51793\n#> [7,] -76.02717 36.55672\n```\n\n## Manipulating with
+  dplyr\n\nsf objects like `nc` are tibbles, so you can manipulate them with dplyr.\nThe
+  following code finds all counties in North Carolina with an area\ngreater than 2
+  billion square meters.\n\n``` r\nnc_large <-\n  nc %>%\n  mutate(area = st_area(geometry)
+  %>% as.double()) %>%\n  filter(area > 2e9) \n```\n\n`st_area` finds the area of
+  a geometry, and returns an object with\nunits, in this case square meters.\n\n```
+  r\nalleghany %>% \n  st_area(geometry)\n#> 611077263 [m^2]\n```\n\nThese units are
+  helpful, but can be annoying to work with, which is why\nwe used `as.double()` in
+  the earlier `mutate()` statement. `as.double()`\nconverts the results to a regular
+  double vector.\n\nThe sf package contains many helpful functions, like `st_area()`,
+  for\nworking with spatial data. Its [reference\npage](https://r-spatial.github.io/sf/reference/index.html)
+  lists all\nfunctions in the package.\n\n## Coordinate reference system\n\nEarlier,
+  you saw the following matrix.\n\n``` r\ncurrituck_geometry[[2]][[1]]\n#>           [,1]
+  \    [,2]\n#> [1,] -76.02717 36.55672\n#> [2,] -75.99866 36.55665\n#> [3,] -75.91192
+  36.54253\n#> [4,] -75.92480 36.47398\n#> [5,] -75.97728 36.47802\n#> [6,] -75.97629
+  36.51793\n#> [7,] -76.02717 36.55672\n```\n\nThis matrix gives the position of points
+  along the boundary of one of\nCurrituck county’s landmasses. Geospatial data represents
+  points on the\nearth in terms of longitude and latitude with respect to a **datum**.\nThe
+  same point can have a different longitude and latitude with respect\nto different
+  datums.\n\nTake two minutes and watch this [simple explanation of\ndatums](https://www.youtube.com/watch?v=xKGlMp__jog).\n\nA
+  **coordinate reference system** (CRS) for a geospatial dataset\nconsists of a datum
+  together with a **projection** that specifies how\npoints in three dimensions will
+  be represented in two. We can use\n`st_crs()` to find the datum and projection of
+  our data.\n\n``` r\nst_crs(nc)\n#> Coordinate Reference System:\n#>   EPSG: 4267
+  \n#>   proj4string: \"+proj=longlat +datum=NAD27 +no_defs\"\n```\n\nThe datum of
+  `nc` is “NAD27”, the [North American\nDatum](https://en.wikipedia.org/wiki/North_American_Datum)
+  of 1927\n(NAD27). And the projection is to simply use the longitude and latitude.\n\nWhen
+  plotting multiple datasets, it is important that they all use the\nsame CRS. Otherwise,
+  points won’t properly line up. Fortunately,\n`st_transform()` can be used to transform
+  datasets to a common CRS, and\nggplot2 will automatically convert layers to have
+  a common CRS.\n"

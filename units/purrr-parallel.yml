@@ -1,0 +1,11 @@
+title: purrr map with multiple inputs
+theme: program
+needs: purrr-mutate
+
+desc: |
+  In *purrr basics*, you learned about purrr's map functions, which can iterate
+  over a single vector. In this unit, you'll learn about purrr functions that
+  can iterate over multiple vectors in parallel.
+
+readings:
+- book: prog-10

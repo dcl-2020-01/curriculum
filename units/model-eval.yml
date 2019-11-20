@@ -1,0 +1,248 @@
+title: Model evaluation
+theme: model
+needs: model-multivariate
+readings: ~
+updated: ~
+desc: "\n``` r\nlibrary(tidyverse)\nlibrary(modelr)\n```\n\nA crucial part of the
+  modeling process is determining the quality of\nyour model. In this reading, we’ll
+  explore how to compare different\nmodels to each other and pick the one that best
+  approximates your data.\n\n## The problem\n\nIn order to illustrate the process
+  of model evaluation, we’re going to\nuse simulated data. To simulate data, you pick
+  a function and use that\nfunction to generate a series of data points. We can then
+  compare any\nmodels we make to the true function used to generate the data.\n\nNote
+  that you almost always won’t actually know the functional\nrepresentation underlying
+  your data. If you did, you probably wouldn’t\nneed a model in the first place.\n\nFor
+  our simulated data, let’s assume there’s some phenomenon that has a\nfunctional
+  representation of the form\n\n    y = f(x)\n\nIn other words, the phenomenon is
+  purely a function of the variable `x`,\nand so, if you know `x`, you can figure
+  out the behavior of the\nphenomenon. Here’s the function `f()` that we’ll use.\n\n```
+  r\n# True function\nf <- function(x) x + 50 * sin((pi / 50) * x)\n```\n\n`f()` is
+  the true function, but let’s also assume that any measurements\nof `y` will have
+  errors. To simulate errors, we need a function that\nadds random noise to `f()`.
+  We’ll call this function `g()`.\n\n``` r\n# Function with measurement error\ng <-
+  function(x) f(x) + rnorm(n = length(x), mean = 0, sd = 20)\n```\n\nWe can use `g()`
+  to generate a random sample of data.\n\n``` r\n# Function that generates a random
+  sample of data points, using g()\nsim_data <- function(from, to, by) {\n  tibble(\n
+  \   x = seq(from = from, to = to, by = by),\n    y = g(x)\n  )\n}\n\n# Generate
+  random sample of points to approximate\nset.seed(439)\ndata_1 <- sim_data(0, 100,
+  0.5)\n```\n\nHere’s a plot of both the simulated data (`data_1`), and the true\nfunction.
+  Our job is now to use the simulated data to create a function\nthat closely approximates
+  the true function.\n\n``` r\ntibble(x = seq(0, 100, 0.5), y = f(x)) %>% \n  ggplot(aes(x,
+  y)) +\n  geom_line() +\n  geom_point(data = data_1) +\n  labs(title = \"True function
+  and simulated data\")\n```\n\n![](model-eval_files/figure-gfm/unnamed-chunk-5-1.png)<!--
+  -->\n\n## The `loess()` model\n\nGiven the shape of our data, the `stats::loess()`
+  function is a good\nplace to start. `loess()` works by creating a local model at
+  each data\npoint. Each of these local models only uses data within a given distance\nfrom
+  that point. The `span` parameter controls how many points are\nincluded in each
+  of these local models. The smaller the span, the fewer\nthe number of points included
+  in each local model.\n\nTo better understand the effect of the `span` parameter,
+  let’s plot\n`loess()` models with different values of `span`.\n\nThe function `plot_loess()`
+  fits a model using `loess()`, then plots the\nmodel predictions and the underlying
+  data.\n\n``` r\n# Plot loess model for given span\nplot_loess <- function(span)
+  {\n  data_1 %>% \n    mutate(f = f(x)) %>% \n    add_predictions(loess(y ~ x, data
+  = data_1, span = span)) %>% \n    ggplot(aes(x)) +\n    geom_line(aes(y = f)) +\n
+  \   geom_point(aes(y = y)) +\n    geom_line(aes(y = pred), color = \"#3366FF\",
+  size = 1) +\n    labs(\n      title = str_glue(\"loess, span = {span}\"),\n      y
+  = \"y\"\n    )\n}\n```\n\nNow, we can use purrr to apply `plot_loess()` to a vector
+  of different\nspan values.\n\n``` r\nc(10, 1, 0.75, 0.1, 0.01) %>% \n  map(plot_loess)
+  %>% \n  walk(print)\n```\n\n![](model-eval_files/figure-gfm/unnamed-chunk-7-1.png)<!--
+  -->![](model-eval_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->![](model-eval_files/figure-gfm/unnamed-chunk-7-3.png)<!--
+  -->![](model-eval_files/figure-gfm/unnamed-chunk-7-4.png)<!-- -->![](model-eval_files/figure-gfm/unnamed-chunk-7-5.png)<!--
+  -->\n\nThe `span` parameter clearly makes a big difference in the model:\n\n  -
+  `span = 10` smooths too much and washes out the variability in the\n    model.\n
+  \ - `span = 1` is much better, but still has a bit too much smoothing.\n  - `span
+  = 0.75` is the default and does a reasonably good job.\n  - `span = 0.1` has too
+  little smoothing. The added complexity has\n    started tracking the random variation
+  in our data.\n  - `span = 0.01` went way too far and started to fit individual random\n
+  \   points.\n\nIt’s clear that the model with `span = 0.75` comes closest to following\nthe
+  form of the true model. The models with `span` equal to `0.1` and\n`0.01` have **overfit**
+  the data, and so won’t generalize well to new\ndata.\n\n## Test and training errors\n\nLet’s
+  return to the question of how to measure the quality of a model.\nAbove, we could
+  easily visualize our different models because they each\nhad only one predictor
+  variable, `x`. It will be much harder to\nvisualize models with many predictor variables,
+  and so we need a more\ngeneral way of determining model quality and comparing models
+  to each\nother.\n\nOne way to measure model quality involves comparing the model’s\npredicted
+  values to the actual values in data. Ideally, we want to know\nthe difference between
+  predicted and actual values on *new* data. This\ndifference is called the **test
+  error**.\n\nUnfortunately, you usually won’t have new data. All you’ll have is the\ndata
+  used to create the model. The difference between the predicted and\nactual values
+  on the data used to train the model is called the\n**training error**.\n\nSince
+  the expected value for the error term of `g()` is `0` for each\n`x`, the best possible
+  model for new data would be `f()` itself. The\nerror on `f()` itself is called the
+  **Bayes error**.\n\nUsually, you won’t know the true function `f()`, and you won’t
+  have\naccess to new test data. In our case, we simulated data, so we know\n`f()`
+  and can generate new data. The following code creates 50 different\nsamples, each
+  the same size. We’ll use these 50 different samples to get\nan accurate estimate
+  of our test error.\n\n``` r\nset.seed(886)\n\ndata_50 <- \n  1:50 %>% \n  map_dfr(~
+  sim_data(0, 100, 0.5))\n```\n\nNow, we need a way to measure the difference between
+  a vector of\npredictions and vector of actual values. Two common metrics include:\n\n
+  \ - Root-mean-square error (RMSE): `sqrt(mean((y - pred)^2, na.rm =\n    TRUE))`\n
+  \ - Mean absolute error (MAE): `mean(abs(y - pred), na.rm = TRUE)`\n\nBoth measures
+  are supported by modelr. We’ll use RMSE below.\n\nNow, we’ll train a series of models
+  on our original dataset, `data_1`,\nusing a range of `span`’s. Then, for each model,
+  we’ll calculate the\ntraining error on `data_1` and the test error on the new data
+  in\n`data_50`.\n\nFirst, we need to create a vector of different `span` values.\n\n```
+  r\nspans <- 2^seq(1, -2, -0.2)\n```\n\nNext, we can use purrr to iterate over the
+  span values, fit a model for\neach one, and calculate the RMSE.\n\n``` r\nerrors
+  <- \n  tibble(span = spans) %>% \n  mutate(\n    train_error =\n      map_dbl(span,
+  ~ rmse(loess(y ~ x, data = data_1, span = .), data_1)),\n    test_error =\n      map_dbl(span,
+  ~ rmse(loess(y ~ x, data = data_1, span = .), data_50))\n  )\n```\n\nThe result
+  is a tibble with a training error and test error for each\n`span`.\n\n``` r\nerrors\n```\n\n
+  \   ## # A tibble: 16 x 3\n    ##     span train_error test_error\n    ##    <dbl>
+  \      <dbl>      <dbl>\n    ##  1 2            27.7       27.4\n    ##  2 1.74
+  \        26.9       26.7\n    ##  3 1.52         25.9       25.7\n    ##  4 1.32
+  \        24.6       24.6\n    ##  5 1.15         22.8       23.0\n    ##  6 1            21.3
+  \      21.8\n    ##  7 0.871        19.3       20.4\n    ##  8 0.758        18.7
+  \      20.2\n    ##  9 0.660        18.5       20.2\n    ## 10 0.574        18.4
+  \      20.3\n    ## 11 0.5          18.4       20.3\n    ## 12 0.435        18.3
+  \      20.4\n    ## 13 0.379        18.1       20.4\n    ## 14 0.330        17.8
+  \      20.4\n    ## 15 0.287        17.4       20.6\n    ## 16 0.25         17.2
+  \      20.8\n\nIt would be useful to compare these errors to the Bayes error, the
+  error\non the true function, which you can think of as the “best-case-scenario”\nerror.
+  The RMSE Bayes error is 20, the standard deviation of the random\nerrors added by
+  `g()`. We can check this with an approximation using\n`data_50`.\n\n``` r\nbayes_error
+  <- 20\n \ndata_50 %>% \n  summarize(bayes_error = sqrt(mean((y - f(x))^2, na.rm
+  = TRUE))) %>% \n  pull(bayes_error)\n```\n\n    ## [1] 19.9741\n\nNow, let’s plot
+  the training, test, and Bayes errors by `span`.\n\n``` r\nbayes <- tibble(\n  span
+  = range(errors$span),\n  type = \"bayes_error\",\n  error = bayes_error\n)\n\nerrors
+  %>% \n  gather(key = type, value = error, -span) %>% \n  ggplot(aes(1 / span, error,
+  color = type)) + \n  geom_line(data = bayes) +\n  geom_line() +\n  geom_point()
+  +\n  labs(\n    title = \"Errors as a function of increasing model complexity\",\n
+  \   color = NULL\n  )\n```\n\n![](model-eval_files/figure-gfm/unnamed-chunk-13-1.png)<!--
+  -->\n\nMapping 1 / `span` to the x-axis makes the plot easier to interpret\nbecause
+  smaller values of `span` create more complex models. The\nleftmost points indicate
+  the simplest models, and the rightmost indicate\nthe most complex.\n\nThe lowest
+  test error is around 20.18, and came from the model with\n`span` ≈ 0.758. Note that
+  the default value of `span` in `loess()` is\n0.75, so the default here would have
+  done pretty well.\n\nYou can see that as the model increases in complexity, the
+  training\nerror (blue line) continually declines, but the test error (green line)\nactually
+  starts to increase. The test error increases for values of\n`span` that make the
+  model too complex overfit the training data.\n\nWe used `data_50`, our new data,
+  to calculate the actual test error. As\nwe’ve said, though, you usually won’t have
+  access to new data and so\nwon’t be able to calculate the test error. You’ll need
+  a way to\nestimate the test error using the training data. As our plot indicates,\nhowever,
+  the training error is a poor estimate of the actual test error.\nIn the next section,
+  we’ll discuss a better way, called\n*cross-validation*, to estimate the test error
+  from the training data.\n\n## Cross-validation\n\nThere are two key ideas of cross-validation.
+  First, in the absence of\nnew data, we can hold out of a random portion of our original
+  data (the\ntest set), train the model on the rest of the data (the training set),\nand
+  then test the model on test set. Second, we can generate multiple\ntrain-test pairs
+  to create a more robust estimate of the true test\nerror.\n\nmodelr provides two
+  functions for generating these train-test pairs:\n`crossv_mc()` and `crossv_kfold()`.
+  We’ll introduce these functions in\nthe next section.\n\n### Generating train-test
+  pairs with `crossv_mc()` and `crossv_kfold()`\n\n`crossv_mc()` and `crossv_kfold()`
+  both take your original data as input\nand produce a tibble that looks like this:\n\n```
+  r\ndata_1 %>% \n  crossv_kfold()\n```\n\n    ## # A tibble: 5 x 3\n    ##   train
+  \         test           .id  \n    ##   <list>         <list>         <chr>\n    ##
+  1 <S3: resample> <S3: resample> 1    \n    ## 2 <S3: resample> <S3: resample> 2
+  \   \n    ## 3 <S3: resample> <S3: resample> 3    \n    ## 4 <S3: resample> <S3:
+  resample> 4    \n    ## 5 <S3: resample> <S3: resample> 5\n\nEach row represents
+  one train-test pair. Eventually, we’re going to\nbuild a model on each train portion,
+  and then test that model on each\ntest portion.\n\n`crossv_mc()` and `crossv_kfold()`
+  differ in how they generate the\ntrain-test pairs.\n\n`crossv_mc()` takes two parameters:
+  `n` and `test`. `n` specifies how\nmany train-test pairs to generate. `test` specifies
+  the portion of the\ndata to hold out each time. Importantly, `crossv_mc()` pulls
+  randomly\nfrom the entire dataset to create each train-test split. This means that\nthe
+  test sets are not mutually exclusive. A single point can be present\nin multiple
+  test sets.\n\n`crossv_kfold()` takes one parameter: `k`, and splits the data into
+  `k`\nexclusive partitions, or *folds*. It then uses each of these `k` folds\nas
+  a test set, with the remaining `k` - 1 folds as the training set. The\nmain difference
+  between `crossv_mc()` and `crossv_kfold()` is that the\n`crossv_kfold()` test sets
+  are mutually exclusive.\n\nNow, let’s take a closer look at how these functions
+  works. The\nfollowing code uses `crossv_kfold()` to create 10 train-test pairs.\n\n```
+  r\nset.seed(122)\n\ndf <- \n  data_1 %>% \n  crossv_kfold(k = 10)\n\ndf\n```\n\n
+  \   ## # A tibble: 10 x 3\n    ##    train          test           .id  \n    ##
+  \   <list>         <list>         <chr>\n    ##  1 <S3: resample> <S3: resample>
+  01   \n    ##  2 <S3: resample> <S3: resample> 02   \n    ##  3 <S3: resample> <S3:
+  resample> 03   \n    ##  4 <S3: resample> <S3: resample> 04   \n    ##  5 <S3: resample>
+  <S3: resample> 05   \n    ##  6 <S3: resample> <S3: resample> 06   \n    ##  7 <S3:
+  resample> <S3: resample> 07   \n    ##  8 <S3: resample> <S3: resample> 08   \n
+  \   ##  9 <S3: resample> <S3: resample> 09   \n    ## 10 <S3: resample> <S3: resample>
+  10\n\nThe result is a tibble with two list-columns: `train` and `test`. Each\nelement
+  of `train` and `test` is a resample object, which you might not\nhave seen before.
+  Let’s look at the first row, the first train-test\npair.\n\n``` r\ntrain_01 <- df$train[[1]]\ntrain_01\n```\n\n
+  \   ## <resample [180 x 2]> 1, 3, 4, 5, 6, 7, 9, 10, 11, 12, ...\n\n``` r\ntest_01
+  <- df$test[[1]]\ntest_01\n```\n\n    ## <resample [21 x 2]> 2, 8, 21, 43, 53, 63,
+  78, 81, 85, 101, ...\n\nEach resample object is actually a two-element list.\n\n```
+  r\nglimpse(train_01)\n```\n\n    ## List of 2\n    ##  $ data:Classes 'tbl_df',
+  'tbl' and 'data.frame':    201 obs. of  2 variables:\n    ##   ..$ x: num [1:201]
+  0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 ...\n    ##   ..$ y: num [1:201] 22.95 36.64 -2.32
+  21.26 18.88 ...\n    ##  $ idx : int [1:180] 1 3 4 5 6 7 9 10 11 12 ...\n    ##
+  \ - attr(*, \"class\")= chr \"resample\"\n\nThe first element, `data` is the original
+  dataset. The second element,\n`idx`, is a set of indices that indicate the subset
+  of the original data\nto use.\n\nWe can use a set operation to verify that the train
+  and test sets are\nmutually exclusive. In other words, there is no point in a given
+  train\nset that is also in its corresponding test set, and vice versa.\n\n``` r\nis_empty(intersect(train_01$idx,
+  test_01$idx))\n```\n\n    ## [1] TRUE\n\nThe union of each train and test set is
+  just the complete original\ndataset. We can verify this by checking that the set
+  of all train and\ntest indices contains every possible index in the original dataset.\n\n```
+  r\nsetequal(union(train_01$idx, test_01$idx),  1:201)\n```\n\n    ## [1] TRUE\n\nresample
+  objects are not tibbles. Some model functions, like `lm()`, can\ntake resample objects
+  as input, but `loess()` cannot. In order to use\n`loess()`, we’ll need to turn the
+  resample objects into tibbles.\n\n``` r\nas_tibble(test_01)\n```\n\n    ## # A tibble:
+  21 x 2\n    ##        x     y\n    ##    <dbl> <dbl>\n    ##  1   0.5  36.6\n    ##
+  \ 2   3.5  18.5\n    ##  3  10    26.8\n    ##  4  21    79.3\n    ##  5  26    68.5\n
+  \   ##  6  31   102. \n    ##  7  38.5  76.4\n    ##  8  40    73.6\n    ##  9  42
+  \   37.1\n    ## 10  50    40.5\n    ## # … with 11 more rows\n\nResample objects
+  waste a lot of space, since each one contains the full\ndataset. A new package [rsample](https://topepo.github.io/rsample/)
+  is\nbeing developed to support tidy modeling in a more space-efficient way.\n\n###
+  Process\n\n`crossv_kfold()` and `crossv_mc()` just generate train-test pairs. In\norder
+  to carry out cross-validation, you still need to fit your model on\neach train set
+  and then evaluate it on each corresponding test set. In\nthis section, we’ll walk
+  you through the process.\n\n**1** Create a function to calculate your test error\n\nFirst,
+  you’ll need a function that calculates the test error using some\nmetric. We’ll
+  use RMSE. The following function returns the RMSE for a\ngiven span, train set,
+  and test set.\n\n``` r\nrmse_error <- function(span, train, test) {\n  rmse(loess(y
+  ~ x, data = as_tibble(train), span = span), as_tibble(test))\n}\n```\n\n**2** Create
+  a function to calculate CV error\n\nNext, you need a function that iterates over
+  all your train-test pairs,\ncalculates the test error for each pair, and then calculates
+  the mean of\nthe errors and the standard error of the mean.\n\n``` r\nspan_error
+  <- function(span, data_cv) {\n  errors <- \n    data_cv %>% \n    select(-.id) %>%
+  \n    add_column(span = span) %>% \n    pmap_dbl(rmse_error)\n  \n  tibble(\n    span
+  = span,\n    error_mean = mean(errors, na.rm = TRUE),\n    error_se = sd(errors,
+  na.rm = TRUE) / sqrt(length(errors))\n  )\n}\n```\n\n**3** Create your train-test
+  pairs\n\nUse either `crossv_mc()` or `crossv_kfold()` to generate your train-test\npairs.
+  We’ll use `crossv_mc()` to generate 10 train-test pairs with test\nsets consisting
+  of approximately 20% of the data.\n\n``` r\nset.seed(430)\n\ndata_mc <- crossv_mc(data_1,
+  n = 10, test = 0.2)\n```\n\n**4** Calculate the CV error for different values of
+  your tuning\nparameter\n\nWe want to compare different values of `span`, so we also
+  need to\niterate over a vector of different `span` values. We’ll calculate the CV\nerror
+  for all `span`s using these train-test pairs.\n\n``` r\nerrors_mc <- \n  spans %>%
+  \n  map_dfr(span_error, data_cv = data_mc)\n\nerrors_mc %>% \n  knitr::kable()\n```\n\n|
+  \     span | error\\_mean | error\\_se |\n| --------: | ----------: | --------:
+  |\n| 2.0000000 |    28.77162 | 0.4598847 |\n| 1.7411011 |    27.90898 | 0.4590082
+  |\n| 1.5157166 |    26.80809 | 0.4633976 |\n| 1.3195079 |    25.42115 | 0.4763469
+  |\n| 1.1486984 |    23.47827 | 0.5162414 |\n| 1.0000000 |    21.89512 | 0.5574787
+  |\n| 0.8705506 |    19.70633 | 0.6247474 |\n| 0.7578583 |    19.00509 | 0.6083815
+  |\n| 0.6597540 |    18.79978 | 0.5899732 |\n| 0.5743492 |    18.80655 | 0.5736369
+  |\n| 0.5000000 |    18.82917 | 0.5663217 |\n| 0.4352753 |    18.87305 | 0.5575942
+  |\n| 0.3789291 |    18.85135 | 0.5313073 |\n| 0.3298770 |    18.78642 | 0.4918808
+  |\n| 0.2871746 |    18.72327 | 0.5003602 |\n| 0.2500000 |    18.70617 | 0.5152749
+  |\n\n**5** Choose the best model\n\nNow, we need to compare the different models
+  and choose the best value\nof `span`.\n\nBecause we simulated our data, we can compare
+  the CV estimates of the\ntest error with the actual test error.\n\n``` r\nerrors_mc
+  %>% \n  left_join(errors, by = \"span\") %>% \n  ggplot(aes(1 / span)) +\n  geom_line(aes(y
+  = test_error, color = \"test_error\")) +\n  geom_point(aes(y = test_error, color
+  = \"test_error\")) +\n  geom_line(aes(y = error_mean, color = \"mc_error\")) +\n
+  \ geom_pointrange(\n    aes(\n      y = error_mean, \n      ymin = error_mean -
+  error_se,\n      ymax = error_mean + error_se,\n      color = \"mc_error\"\n    )\n
+  \ ) +\n  labs(\n    title = \"Cross-validation and test errors\",\n    y = \"error\",\n
+  \   color = NULL\n  )\n```\n\n![](model-eval_files/figure-gfm/unnamed-chunk-25-1.png)<!--
+  -->\n\nFrom this plot, we can see that CV error estimates from `crossv_mc()`\nunderestimate
+  the true test error in the range with `1/span` \\> 1. The\nline ranges reflect one
+  standard error on either side of the mean error.\n\nUsually, you won’t have access
+  to the true test error, so we need a way\nto choose the best value of `span` using
+  just the CV errors. Here’s the\nrule-of-thumb for choosing a tuning parameter when
+  you only know the CV\nerrors.\n\n  - Start with the parameter that has the lowest
+  mean CV error. In this\n    case, that would be `span` = 0.25 (on the plot, `1/span`
+  = 4) with\n    an mean CV error of approximately 18.7.\n  - Then choose the simplest
+  model whose mean CV error is within one\n    standard error of the lowest value.
+  The standard error for `span` =\n    0.25 is approximately 0.5, so we are seeking
+  the simplest model with\n    a mean CV error less than 19.2. This occurs for `span`
+  ≈ 0.758 (on\n    the plot, `1/span` ≈ 1.32).\n\nWe saw above that if we knew the
+  test error, we would choose `span` ≈\n0.758 as the optimal parameter. The one-standard-error
+  rule of thumb\nwould lead us to choose the same optimal parameter without having
+  to\nknow the test error. The test error for this `span` is very close to the\nBayes
+  error of 20.\n\n``` r\nerrors %>% \n  top_n(-1, test_error) %>% \n  select(span,
+  test_error) %>% \n  knitr::kable()\n```\n\n|      span | test\\_error |\n| --------:
+  | ----------: |\n| 0.7578583 |     20.1787 |\n"

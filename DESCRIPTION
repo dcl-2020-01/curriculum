@@ -1,0 +1,39 @@
+Package: curriculum
+Version: 0.0.0.9000
+Title: Curriclum for Stanford Data Challenge Lab
+Description: Curriclum for Stanford Data Challenge Lab.
+Authors@R:
+  c(
+    person(
+      given = "Sara",
+      family = "Altman", 
+      email = "skaltman@stanford.edu", 
+      role = "aut"
+    ),
+    person(
+      given = "Bill",
+      family = "Behrman", 
+      email = "behrman@stanford.edu", 
+      role = c("aut", "cre")
+    ),
+    person(
+      given = "Hadley",
+      family = "Wickham",
+      email = "hadley@rstudio.com",
+      role = "aut"
+    )
+  )
+Depends: 
+  glue,
+  ggraph,
+  yaml,
+  tidyverse
+Imports:
+  cli,
+  digest
+Suggests:
+  rvest,
+  here
+License: GPL-3
+Encoding: UTF-8
+LazyData: true

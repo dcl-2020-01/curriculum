@@ -1,0 +1,12 @@
+title: Data structure basics
+theme: program
+needs: manip-basics
+
+desc: |
+  Vectors are fundamental to almost everything you'll do in R. You'll almost 
+  always work with atomic vectors, lists (which are a type of vector), or 
+  tibbles (which are lists of vectors). In this reading, you'll learn how to 
+  create and work with these three data structures. 
+  
+readings:
+- book: prog-2
