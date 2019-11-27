@@ -1,6 +1,7 @@
 title: Predicate functions
 theme: program
 needs: function-basics
+
 desc: |
   Predicate functions, which return a single `TRUE` or `FALSE` on all inputs, are
   another useful tool to keep in your functional programming toolbox. Some functions,
