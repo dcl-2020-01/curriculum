@@ -17,8 +17,7 @@ desc: |
   make it very easy to apply the tidyverse style guide automatically.
 
 readings:
-- href: https://github.com/dcl-docs/style-guide/blob/master/style-guide.md
-  text: DCL style guide
+- book: workflow-9
 
 - href: http://style.tidyverse.org
   text: Style guide
