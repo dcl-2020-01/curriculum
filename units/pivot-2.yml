@@ -1,0 +1,11 @@
+title: Advanced pivoting
+theme: wrangle
+needs: pivot-1
+
+desc: |
+  `pivot_longer()` and `pivot_wider()` are very flexible, and can handle many
+  varieties of non-tidy data sets. In this unit, you'll dive deeper into pivoting
+  and learn how to apply the pivot functions to more complex tidying tasks.
+  
+readings:
+- book: wrangle-6
