@@ -1,0 +1,10 @@
+title: Basic pivoting
+theme: wrangle
+needs: tidy-data
+
+desc: |
+  Much of the data you'll encounter won't be tidy, and it will be your task to     tidy it. tidyr's pivot functions, `pivot_longer()` and `pivot_wider()` will two
+  of the most important tools in your tidying toolbox. 
+  
+readings:
+- book: wrangle-5
