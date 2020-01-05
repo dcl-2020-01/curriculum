@@ -26,6 +26,6 @@ make it very easy to apply the tidyverse style guide automatically.
 
   * [Style guide](http://style.tidyverse.org).
     The official tidyverse style guide includes more information than the DCL
-    style guide. Take a look at chapters 1-4.
+    style guide. Take a look at chapters 1-5.
 
 
