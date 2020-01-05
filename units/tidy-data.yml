@@ -1,6 +1,5 @@
 title: Tidy data
 theme: wrangle
-needs: [eda-1d]
 
 desc: |
   A __tidy__ data frame is a data frame (or tibble) where the variables in

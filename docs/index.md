@@ -44,14 +44,20 @@ title: Theme index
 </tr>
 <tr>
 <td></td>
+  <td colspan="6"></td>
+  <td colspan="6"><a class="workflow" href="documentation.html">Documentation</a></td>
+</tr>
+<tr>
+<td></td>
   <td colspan="5"></td>
   <td colspan="6"><a class="communicate" href="code-style.html">Code style</a></td>
   <td colspan="1"></td>
 </tr>
 <tr>
 <td></td>
-  <td colspan="6"></td>
-  <td colspan="6"><a class="workflow" href="documentation.html">Documentation</a></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="tidy-data.html">Tidy data</a></td>
+  <td colspan="5"></td>
 </tr>
 <tr>
 <td></td>

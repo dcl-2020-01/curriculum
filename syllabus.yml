@@ -1,10 +1,11 @@
-cur-week: 0
+cur-week: 01
 
 weeks:
   week-01:
   - setup
-  - code-style
   - documentation
+  - code-style
+  - tidy-data
   - data-basics
   - vis-basics
   - manip-basics
@@ -16,7 +17,6 @@ weeks:
   - getting-help
   - data-structure-basics
   - eda-1d
-  - tidy-data
   - vis-strategy
   - vis-calls
 
