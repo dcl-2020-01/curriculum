@@ -22,7 +22,7 @@ make it very easy to apply the tidyverse style guide automatically.
 
 ## Readings
 
-  * [DCL style guide](https://github.com/dcl-docs/style-guide/blob/master/style-guide.md)
+  * [Style guide](https://dcl-workflow.stanford.edu/style-guide.html) [workflow-9]
 
   * [Style guide](http://style.tidyverse.org).
     The official tidyverse style guide includes more information than the DCL

@@ -7,23 +7,12 @@ title: Learning more
 # Learning more <small class='workflow'>[workflow]</small>
 <small>(Builds on: [Getting help](getting-help.md))</small>
 
-In this class, you have mastered the basics of data science in R,
-but there's still a lot to learn! To keep learning, you need to
-build up a regular practice of
+The process of learning, whether R or anything else, should never be over! Here,
+we'll list some ways to help you continue learning R and data science and stay
+up-to-date with new developments. 
 
-* [R Weekly](https://rweekly.org): a weekly newsletter highlighting
-  what's been happening in the R community
+## Readings
 
-* [RStudio's blog](http://blog.rstudio.org): this is where updates to
-  the tidyverse (including new packages) are announced.
+  * [Learning more](https://dcl-workflow.stanford.edu/learning-more.html) [workflow-2]
 
-* [RStudio Tips](https://twitter.com/rstudiotips): this twitter account
-  posts little tips and tricks for using RStudio effectively.
 
-* [tidyverse.org](http://tidyverse.org): an up-to-date resource for
-  everything tidyverse.
-
-    * [tidyverse.org blog](https://www.tidyverse.org/articles/): articles and
-      descriptions of new packages releases.
-      
-* [Hadley's Twitter feed](https://twitter.com/hadleywickham)
