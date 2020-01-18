@@ -22,8 +22,8 @@ weeks:
   - getting-help
 
   week-03:
-  - vis-scales
   - relational-basics
+  - vis-scales
   - tidycensus
   - function-basics
   - string-basics
