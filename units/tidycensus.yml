@@ -1,0 +1,13 @@
+title: tidycensus
+theme: wrangle
+needs: manip-basics
+
+desc: |
+  The American Community Survey (ACS) and decennial census are rich, reliable
+  sources of information on the U.S. population. In this reading, you'll learn how 
+  to use the tidycensus package to easily access ACS and census data from R. 
+  
+readings:
+- book: wrangle-11.1
+- book: wrangle-12.1
+- book: wrangle-12.2
