@@ -15,6 +15,6 @@ to.
 
 ## Readings
 
-  * [Google Sheets](https://dcl-wrangle.stanford.edu/googlesheets.html) [wrangle-11]
+  * [API basics](https://dcl-wrangle.stanford.edu/api-basics.html) [wrangle-11]
 
 

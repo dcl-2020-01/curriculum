@@ -1,4 +1,4 @@
-cur-week: 02
+cur-week: 03
 
 weeks:
   week-01:
@@ -22,12 +22,13 @@ weeks:
   - getting-help
 
   week-03:
-  - relational-basics
-  - spread-gather
-  - parse-basics
-  - string-basics
-  - function-basics
   - vis-scales
+  - relational-basics
+  - tidycensus
+  - function-basics
+  - string-basics
+  - parse-basics
+  - factor-basics
 
   week-04:
   - purrr-basics
@@ -50,7 +51,6 @@ weeks:
   - manip-scoped-2
   - regexps
   - vis-time-series
-  - factor-basics
   - model-vis
 
   week-07:
