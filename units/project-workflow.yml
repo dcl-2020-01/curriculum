@@ -1,0 +1,13 @@
+title: Project workflow
+theme: workflow
+needs: 
+
+desc: |
+  Good project workflow habits can help you stay organized and sane, avoid mistakes,
+  and produce better work. In this reading, we'll go over our approach to project
+  workflow.
+  
+readings:
+- book: workflow-4
+- book: workflow-5
+- book: workflow-6
