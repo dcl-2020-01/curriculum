@@ -1,0 +1,13 @@
+title: Scripts
+theme: wrangle
+needs: 
+
+desc: |
+  So far, you've been writing R code in R Markdown chunks and in the console. R
+  scripts are another useful format for coding in R. In this reading, you'll learn
+  how and when to use scripts. You'll also learn about the vroom package, which
+  makes reading and writing large data files much faster.
+  
+readings:
+- book: workflow-7
+- book: wrangle-14
