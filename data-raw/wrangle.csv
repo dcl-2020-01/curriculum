@@ -58,8 +58,8 @@ id,title,depth,href
 11.5.1,JSON data,3,https://dcl-wrangle.stanford.edu/api-basics.html#json-data
 11.5.2,All formats,3,https://dcl-wrangle.stanford.edu/api-basics.html#all-formats
 11.6,Next steps,2,https://dcl-wrangle.stanford.edu/api-basics.html#next-steps
-12,United States census,1,https://dcl-wrangle.stanford.edu/census.html
-12.1,Census basics,2,https://dcl-wrangle.stanford.edu/census.html#census-basics
+12,U.S. Census Bureau,1,https://dcl-wrangle.stanford.edu/census.html
+12.1,Census Bureau basics,2,https://dcl-wrangle.stanford.edu/census.html#census-bureau-basics
 12.1.1,Decennial census,3,https://dcl-wrangle.stanford.edu/census.html#decennial-census
 12.1.2,ACS,3,https://dcl-wrangle.stanford.edu/census.html#acs
 12.1.3,Population estimates,3,https://dcl-wrangle.stanford.edu/census.html#population-estimates
@@ -75,3 +75,6 @@ id,title,depth,href
 13.4,Authentication,2,https://dcl-wrangle.stanford.edu/googlesheets.html#authentication
 13.4.1,Interactive session,3,https://dcl-wrangle.stanford.edu/googlesheets.html#interactive-session
 13.4.2,Non-interactive session,3,https://dcl-wrangle.stanford.edu/googlesheets.html#non-interactive-session
+14,vroom,1,https://dcl-wrangle.stanford.edu/read-write.html
+14.1,Read,2,https://dcl-wrangle.stanford.edu/read-write.html#read
+14.2,Write,2,https://dcl-wrangle.stanford.edu/read-write.html#write

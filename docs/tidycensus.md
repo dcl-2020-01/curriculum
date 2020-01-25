@@ -15,7 +15,7 @@ to use the tidycensus package to easily access ACS and census data from R.
 
   * [What is an API?](https://dcl-wrangle.stanford.edu/api-basics.html#what-is-an-api) [wrangle-11.1]
 
-  * [Census basics](https://dcl-wrangle.stanford.edu/census.html#census-basics) [wrangle-12.1]
+  * [Census Bureau basics](https://dcl-wrangle.stanford.edu/census.html#census-bureau-basics) [wrangle-12.1]
 
   * [tidycensus](https://dcl-wrangle.stanford.edu/census.html#tidycensus) [wrangle-12.2]
 

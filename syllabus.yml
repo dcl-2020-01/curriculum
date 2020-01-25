@@ -1,4 +1,4 @@
-cur-week: 03
+cur-week: 04
 
 weeks:
   week-01:
@@ -31,11 +31,15 @@ weeks:
   - factor-basics
 
   week-04:
-  - purrr-basics
-  - eda-2d
-  - missing-values
-  - vis-distributions
   - manip-scoped
+  - eda-2d
+#  - function-anonymous
+  - purrr-basics
+  - scripts
+  - pivot-2
+  - vis-distributions
+  - tidy-eval
+  - project-workflow
 
   week-05:
   - datetime-basics
@@ -64,7 +68,6 @@ weeks:
   - model-many
   - separate-unite
   - parse-details
-  - tidy-eval
 
   week-09:
   - model-eval
