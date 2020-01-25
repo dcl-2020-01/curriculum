@@ -179,9 +179,9 @@ title: Theme index
 <tbody>
 <tr>
 <td id='week-4'>4</td>
-  <td colspan="1"></td>
-  <td colspan="6"><a class="wrangle" href="manip-scoped.html">Scoped verb basics</a></td>
-  <td colspan="5"></td>
+  <td colspan="4"></td>
+  <td colspan="6"><a class="program" href="purrr-basics.html">purrr basics</a></td>
+  <td colspan="2"></td>
 </tr>
 <tr>
 <td></td>
@@ -190,9 +190,9 @@ title: Theme index
 </tr>
 <tr>
 <td></td>
-  <td colspan="4"></td>
-  <td colspan="6"><a class="program" href="purrr-basics.html">purrr basics</a></td>
-  <td colspan="2"></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="manip-scoped.html">Scoped verb basics</a></td>
+  <td colspan="5"></td>
 </tr>
 <tr>
 <td></td>

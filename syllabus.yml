@@ -31,10 +31,10 @@ weeks:
   - factor-basics
 
   week-04:
-  - manip-scoped
-  - eda-2d
 #  - function-anonymous
   - purrr-basics
+  - eda-2d
+  - manip-scoped
   - scripts
   - pivot-2
   - vis-distributions
