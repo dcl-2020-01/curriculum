@@ -2,12 +2,17 @@ id,title,depth,href
 1,Introduction,1,https://dcl-prog.stanford.edu/data-structures.html
 2,"Vectors, lists, and tibbles",1,https://dcl-prog.stanford.edu/data-structure-basics.html
 2.1,Atomic vectors,2,https://dcl-prog.stanford.edu/data-structure-basics.html#atomic-vectors
-2.1.1,Subsetting,3,https://dcl-prog.stanford.edu/data-structure-basics.html#subsetting
-2.1.2,Augmented vectors,3,https://dcl-prog.stanford.edu/data-structure-basics.html#augmented-vectors
+2.1.1,Properties,3,https://dcl-prog.stanford.edu/data-structure-basics.html#properties
+2.1.2,Subsetting,3,https://dcl-prog.stanford.edu/data-structure-basics.html#subsetting
+2.1.3,Applying functions,3,https://dcl-prog.stanford.edu/data-structure-basics.html#applying-functions
+2.1.4,Augmented vectors,3,https://dcl-prog.stanford.edu/data-structure-basics.html#augmented-vectors
 2.2,Lists,2,https://dcl-prog.stanford.edu/data-structure-basics.html#lists
+2.2.1,Basics,3,https://dcl-prog.stanford.edu/data-structure-basics.html#basics
+2.2.2,Flattening,3,https://dcl-prog.stanford.edu/data-structure-basics.html#flattening
 2.3,Tibbles,2,https://dcl-prog.stanford.edu/data-structure-basics.html#tibbles
-2.3.1,Dimensions,3,https://dcl-prog.stanford.edu/data-structure-basics.html#dimensions
+2.3.1,Creation,3,https://dcl-prog.stanford.edu/data-structure-basics.html#creation
 2.3.2,Variables,3,https://dcl-prog.stanford.edu/data-structure-basics.html#variables
+2.3.3,Dimensions,3,https://dcl-prog.stanford.edu/data-structure-basics.html#dimensions
 3,Introduction,1,https://dcl-prog.stanford.edu/functions.html
 4,Vector functions,1,https://dcl-prog.stanford.edu/function-vector.html
 4.1,Temperature recommendations,2,https://dcl-prog.stanford.edu/function-vector.html#temperature-recommendations
@@ -35,19 +40,10 @@ id,title,depth,href
 11.2,Walk,2,https://dcl-prog.stanford.edu/purrr-extras.html#walk
 11.3,Predicate functions,2,https://dcl-prog.stanford.edu/purrr-extras.html#predicate-functions-1
 12,Introduction,1,https://dcl-prog.stanford.edu/tidy-eval-section.html
-13,Summary,1,https://dcl-prog.stanford.edu/tidy-eval-summary.html
-13.1,Passing full expressions with ...,2,https://dcl-prog.stanford.edu/tidy-eval-summary.html#passing-full-expressions-with-...
-13.2,Named arguments,2,https://dcl-prog.stanford.edu/tidy-eval-summary.html#named-arguments
-13.3,Named arguments and any number of additional arguments,2,https://dcl-prog.stanford.edu/tidy-eval-summary.html#named-arguments-and-any-number-of-additional-arguments
-13.4,Assigning names,2,https://dcl-prog.stanford.edu/tidy-eval-summary.html#assigning-names
-13.5,Recoding,2,https://dcl-prog.stanford.edu/tidy-eval-summary.html#recoding
-14,Tidy evaluation,1,https://dcl-prog.stanford.edu/tidy-eval-detailed.html
-14.1,Quoting functions,2,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#quoting-functions
-14.1.1,Quoted arguments,3,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#quoted-arguments
-14.1.2,Strings and glue(),3,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#strings-and-glue
-14.1.3,Quosures,3,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#quosures
-14.2,Wrapping quoting functions,2,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#wrapping-quoting-functions
-14.2.1,enquo() and !!,3,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#enquo-and
-14.2.2,Passing ...,3,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#passing-...
-14.2.3,Assigning names,3,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#assigning-names-1
-14.3,Passing vectors with !!!,2,https://dcl-prog.stanford.edu/tidy-eval-detailed.html#passing-vectors-with
+13,Basics,1,https://dcl-prog.stanford.edu/tidy-eval-basics.html
+13.1,Embracing with {{ }},2,https://dcl-prog.stanford.edu/tidy-eval-basics.html#embracing-with
+13.2,Forwarding ...,2,https://dcl-prog.stanford.edu/tidy-eval-basics.html#forwarding-...
+13.2.1,Passing full expressions,3,https://dcl-prog.stanford.edu/tidy-eval-basics.html#passing-full-expressions
+13.2.2,Additional arguments,3,https://dcl-prog.stanford.edu/tidy-eval-basics.html#additional-arguments
+13.3,Assigning names,2,https://dcl-prog.stanford.edu/tidy-eval-basics.html#assigning-names
+13.4,Recoding,2,https://dcl-prog.stanford.edu/tidy-eval-basics.html#recoding

@@ -18,8 +18,6 @@ other tidyverse verbs.
 
   * [Introduction](https://dcl-prog.stanford.edu/tidy-eval-section.html) [prog-12]
 
-  * [Summary](https://dcl-prog.stanford.edu/tidy-eval-summary.html) [prog-13]
-
-  * [Tidy evaluation](https://dcl-prog.stanford.edu/tidy-eval-detailed.html) [prog-14]
+  * [Basics](https://dcl-prog.stanford.edu/tidy-eval-basics.html) [prog-13]
 
 
