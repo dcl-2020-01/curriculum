@@ -224,4 +224,36 @@ title: Theme index
   <td colspan="6"><a class="workflow" href="project-workflow.html">Project workflow</a></td>
 </tr>
 </tbody>
+<tbody>
+<tr>
+<td id='week-5'>5</td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="datetime-basics.html">Date/time basics</a></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="4"></td>
+  <td colspan="6"><a class="program" href="function-vector.html">Vector functions</a></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="4"></td>
+  <td colspan="6"><a class="program" href="purrr-mutate.html">purrr in mutate</a></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="spatial-basics.html">Spatial basics</a></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="2"></td>
+  <td colspan="6"><a class="visualize" href="vis-continuous-continuous.html">Continuous-continuous relationships</a></td>
+  <td colspan="4"></td>
+</tr>
+</tbody>
 </table>

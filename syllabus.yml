@@ -1,4 +1,4 @@
-cur-week: 04
+cur-week: 05
 
 weeks:
   week-01:
@@ -31,7 +31,6 @@ weeks:
   - factor-basics
 
   week-04:
-#  - function-anonymous
   - purrr-basics
   - eda-2d
   - manip-scoped
@@ -47,7 +46,6 @@ weeks:
   - purrr-mutate
   - spatial-basics
   - vis-continuous-continuous
-  - model-basics
 
   week-06:
   - list-cols
