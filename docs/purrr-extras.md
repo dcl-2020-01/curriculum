@@ -12,6 +12,6 @@ this reading, you'll learn about some additional useful types of purrr functions
 
 ## Readings
 
-  * [Other purrr functions](https://dcl-prog.stanford.edu/purrr-extras.html) [prog-11]
+  * [Map with multiple inputs](https://dcl-prog.stanford.edu/purrr-parallel.html) [prog-11]
 
 

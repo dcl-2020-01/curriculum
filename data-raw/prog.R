@@ -30,4 +30,4 @@ chapters <- tibble(id, title, depth, href)
 
 chapters %>%
   filter(id != "", depth <= 3) %>%
-  write_csv("prog.csv")
+  write_csv(here::here("data-raw/prog.csv"))

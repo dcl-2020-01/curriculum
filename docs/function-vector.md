@@ -14,6 +14,6 @@ vectors of the same length as output.
 
 ## Readings
 
-  * [Vector functions](https://dcl-prog.stanford.edu/function-vector.html) [prog-4]
+  * [Introduction](https://dcl-prog.stanford.edu/functions.html) [prog-4]
 
 

@@ -13,6 +13,6 @@ can iterate over multiple vectors in parallel.
 
 ## Readings
 
-  * [Map with multiple inputs](https://dcl-prog.stanford.edu/purrr-parallel.html) [prog-10]
+  * [purrr inside mutate](https://dcl-prog.stanford.edu/purrr-mutate.html) [prog-10]
 
 

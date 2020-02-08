@@ -13,6 +13,6 @@ take predicate functions as arguments.
 
 ## Readings
 
-  * [Predicate functions](https://dcl-prog.stanford.edu/function-predicate.html) [prog-6]
+  * [Anonymous functions](https://dcl-prog.stanford.edu/function-anonymous.html) [prog-6]
 
 

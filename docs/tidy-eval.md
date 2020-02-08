@@ -16,8 +16,8 @@ other tidyverse verbs.
 
 ## Readings
 
-  * [Introduction](https://dcl-prog.stanford.edu/tidy-eval-section.html) [prog-12]
+  * [Other purrr functions](https://dcl-prog.stanford.edu/purrr-extras.html) [prog-12]
 
-  * [Basics](https://dcl-prog.stanford.edu/tidy-eval-basics.html) [prog-13]
+  * [Introduction](https://dcl-prog.stanford.edu/tidy-eval-section.html) [prog-13]
 
 

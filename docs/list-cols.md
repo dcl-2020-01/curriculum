@@ -17,6 +17,6 @@ structures get more complicated.
 
 ## Readings
 
-  * [Introduction](https://dcl-prog.stanford.edu/functions.html) [prog-3]
+  * [List columns](https://dcl-prog.stanford.edu/list-columns.html) [prog-3]
 
 
