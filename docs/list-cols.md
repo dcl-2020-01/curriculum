@@ -17,10 +17,6 @@ structures get more complicated.
 
 ## Readings
 
-  * [List-columns](http://r4ds.had.co.nz/many-models.html#list-columns-1) [r4ds-25.3]
-
-  * [Creating list-columns](http://r4ds.had.co.nz/many-models.html#creating-list-columns) [r4ds-25.4]
-
-  * [Simplifying list-columns](http://r4ds.had.co.nz/many-models.html#simplifying-list-columns) [r4ds-25.5]
+  * [Introduction](https://dcl-prog.stanford.edu/functions.html) [prog-3]
 
 

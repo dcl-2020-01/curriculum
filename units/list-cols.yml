@@ -11,6 +11,4 @@ desc: |
   structures get more complicated.
 
 readings:
-- book: r4ds-25.3
-- book: r4ds-25.4
-- book: r4ds-25.5
+- book: prog-3
