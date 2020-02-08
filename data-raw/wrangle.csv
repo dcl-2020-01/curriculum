@@ -68,6 +68,10 @@ id,title,depth,href
 12.2.1,Specify a dataset,3,https://dcl-wrangle.stanford.edu/census.html#specify-a-dataset
 12.2.2,Find variables,3,https://dcl-wrangle.stanford.edu/census.html#find-variables
 12.2.3,Get data,3,https://dcl-wrangle.stanford.edu/census.html#get-data
+12.3,Population estimates,2,https://dcl-wrangle.stanford.edu/census.html#population-estimates-1
+12.3.1,Choose data,3,https://dcl-wrangle.stanford.edu/census.html#choose-data
+12.3.2,Craft your request,3,https://dcl-wrangle.stanford.edu/census.html#craft-your-request-1
+12.3.3,Read the data into R,3,https://dcl-wrangle.stanford.edu/census.html#read-the-data-into-r-1
 13,Google Sheets,1,https://dcl-wrangle.stanford.edu/googlesheets.html
 13.1,Reading,2,https://dcl-wrangle.stanford.edu/googlesheets.html#reading
 13.2,Writing,2,https://dcl-wrangle.stanford.edu/googlesheets.html#writing

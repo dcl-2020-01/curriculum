@@ -1,0 +1,14 @@
+title: Census Bureau APIs
+theme: wrangle
+needs: tidycensus
+
+desc: |
+  Previously, you learned how to use the tidycensus package to access ACS and
+  decennial census data. To access yearly population data between decennial census
+  years, however, you'll need to work directly with the Census Bureau's
+  Population Estimates APIs. In this unit, we'll cover accessing data directly 
+  from APIs, and then discuss the Population Estimates APIs in more detail.
+  
+readings:
+- book: wrangle-11
+- book: wrangle-12.3
