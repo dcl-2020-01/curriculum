@@ -1,4 +1,4 @@
-cur-week: 05
+cur-week: 06
 
 weeks:
   week-01:
@@ -48,12 +48,11 @@ weeks:
   - vis-continuous-continuous
 
   week-06:
-  - list-cols
   - function-predicate
   - manip-scoped-2
+  - list-cols
   - regexps
   - vis-time-series
-  - model-vis
 
   week-07:
   - timespans

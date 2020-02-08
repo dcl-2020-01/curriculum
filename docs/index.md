@@ -256,4 +256,36 @@ title: Theme index
   <td colspan="4"></td>
 </tr>
 </tbody>
+<tbody>
+<tr>
+<td id='week-6'>6</td>
+  <td colspan="4"></td>
+  <td colspan="6"><a class="program" href="function-predicate.html">Predicate functions</a></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="manip-scoped-2.html">Scoped verbs with predicates</a></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="4"></td>
+  <td colspan="6"><a class="program" href="list-cols.html">List-columns</a></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="regexps.html">Regular expressions</a></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="2"></td>
+  <td colspan="6"><a class="visualize" href="vis-time-series.html">Time series</a></td>
+  <td colspan="4"></td>
+</tr>
+</tbody>
 </table>
