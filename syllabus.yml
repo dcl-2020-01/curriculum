@@ -53,6 +53,7 @@ weeks:
   - list-cols
   - regexps
   - vis-time-series
+  - census-bureau-apis
 
   week-07:
   - timespans

@@ -287,5 +287,11 @@ title: Theme index
   <td colspan="6"><a class="visualize" href="vis-time-series.html">Time series</a></td>
   <td colspan="4"></td>
 </tr>
+<tr>
+<td></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="census-bureau-apis.html">Census Bureau APIs</a></td>
+  <td colspan="5"></td>
+</tr>
 </tbody>
 </table>
