@@ -20,8 +20,8 @@ to create custom functions inside map functions.
 
 ## Readings
 
-  * [Vector functions](https://dcl-prog.stanford.edu/function-vector.html) [prog-5]
+  * [Anonymous functions](https://dcl-prog.stanford.edu/function-anonymous.html) [prog-6]
 
-  * [Introduction](https://dcl-prog.stanford.edu/iteration.html) [prog-8]
+  * [Basic map functions](https://dcl-prog.stanford.edu/purrr-basics.html) [prog-9]
 
 
