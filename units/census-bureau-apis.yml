@@ -10,5 +10,5 @@ desc: |
   from APIs, and then discuss the Population Estimates APIs in more detail.
   
 readings:
-- book: wrangle-11
-- book: wrangle-12.3
+- book: wrangle-12
+- book: wrangle-13.3

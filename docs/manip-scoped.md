@@ -15,6 +15,8 @@ saving you time and typing energy.
 
 ## Readings
 
-  * [Basics](https://dcl-wrangle.stanford.edu/scoped_basics.html) [wrangle-8]
+  * [Basics](https://dcl-wrangle.stanford.edu/scoped-basics.html) [wrangle-8]
+
+  * [Cheat sheet](https://dcl-wrangle.stanford.edu/scoped-cheat-sheet.html) [wrangle-10]
 
 

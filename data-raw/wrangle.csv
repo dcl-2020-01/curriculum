@@ -19,66 +19,71 @@ id,title,depth,href
 3.1,Delimited files,2,https://dcl-wrangle.stanford.edu/parse-basics.html#delimited-files
 3.2,read_csv(),2,https://dcl-wrangle.stanford.edu/parse-basics.html#read_csv
 4,Introduction,1,https://dcl-wrangle.stanford.edu/tidy.html
-5,Basic pivoting,1,https://dcl-wrangle.stanford.edu/pivot_basic.html
-5.1,Longer,2,https://dcl-wrangle.stanford.edu/pivot_basic.html#longer
-5.2,Wider,2,https://dcl-wrangle.stanford.edu/pivot_basic.html#wider
-5.3,Missing values,2,https://dcl-wrangle.stanford.edu/pivot_basic.html#missing-values
-6,Advanced pivoting,1,https://dcl-wrangle.stanford.edu/pivot_advanced.html
-6.1,Longer,2,https://dcl-wrangle.stanford.edu/pivot_advanced.html#longer-1
-6.1.1,Types,3,https://dcl-wrangle.stanford.edu/pivot_advanced.html#types
-6.1.2,Prefixes,3,https://dcl-wrangle.stanford.edu/pivot_advanced.html#prefixes
-6.1.3,Multiple values,3,https://dcl-wrangle.stanford.edu/pivot_advanced.html#multiple-values
-6.2,Wider,2,https://dcl-wrangle.stanford.edu/pivot_advanced.html#wider-1
-6.2.1,Prefixes,3,https://dcl-wrangle.stanford.edu/pivot_advanced.html#prefixes-1
-6.2.2,Multiple values,3,https://dcl-wrangle.stanford.edu/pivot_advanced.html#multiple-values-1
-6.2.3,id_cols,3,https://dcl-wrangle.stanford.edu/pivot_advanced.html#id_cols
-7,Introduction,1,https://dcl-wrangle.stanford.edu/scoped_verbs.html
-8,Basics,1,https://dcl-wrangle.stanford.edu/scoped_basics.html
-8.0.1,_all and _at scoped verbs,3,https://dcl-wrangle.stanford.edu/scoped_basics.html#all-and-_at-scoped-verbs
-8.0.2,Scoped mutate(),3,https://dcl-wrangle.stanford.edu/scoped_basics.html#scoped-mutate
-8.0.3,Anonymous functions,3,https://dcl-wrangle.stanford.edu/scoped_basics.html#anonymous-functions
-8.0.4,...,3,https://dcl-wrangle.stanford.edu/scoped_basics.html#section
-8.0.5,Multiple functions,3,https://dcl-wrangle.stanford.edu/scoped_basics.html#multiple-functions
-8.0.6,Scoped select() and rename(),3,https://dcl-wrangle.stanford.edu/scoped_basics.html#scoped-select-and-rename
-9,Predicates,1,https://dcl-wrangle.stanford.edu/scoped_predicate.html
-9.1,_if,2,https://dcl-wrangle.stanford.edu/scoped_predicate.html#if
-9.1.1,Anonymous predicate functions,3,https://dcl-wrangle.stanford.edu/scoped_predicate.html#anonymous-predicate-functions
-9.2,Scoped filter(),2,https://dcl-wrangle.stanford.edu/scoped_predicate.html#scoped-filter
-9.2.1,Specifying rows with all_vars() and any_vars(),3,https://dcl-wrangle.stanford.edu/scoped_predicate.html#specifying-rows-with-all_vars-and-any_vars
-9.2.2,filter_if(),3,https://dcl-wrangle.stanford.edu/scoped_predicate.html#filter_if
-10,Introduction,1,https://dcl-wrangle.stanford.edu/apis.html
-11,API basics,1,https://dcl-wrangle.stanford.edu/api-basics.html
-11.1,What is an API?,2,https://dcl-wrangle.stanford.edu/api-basics.html#what-is-an-api
-11.2,Find your API,2,https://dcl-wrangle.stanford.edu/api-basics.html#find-your-api
-11.3,Craft your request,2,https://dcl-wrangle.stanford.edu/api-basics.html#craft-your-request
-11.3.1,Base request,3,https://dcl-wrangle.stanford.edu/api-basics.html#base-request
-11.3.2,Parameters,3,https://dcl-wrangle.stanford.edu/api-basics.html#parameters
-11.4,Test your request,2,https://dcl-wrangle.stanford.edu/api-basics.html#test-your-request
-11.5,Read the data into R,2,https://dcl-wrangle.stanford.edu/api-basics.html#read-the-data-into-r
-11.5.1,JSON data,3,https://dcl-wrangle.stanford.edu/api-basics.html#json-data
-11.5.2,All formats,3,https://dcl-wrangle.stanford.edu/api-basics.html#all-formats
-11.6,Next steps,2,https://dcl-wrangle.stanford.edu/api-basics.html#next-steps
-12,U.S. Census Bureau,1,https://dcl-wrangle.stanford.edu/census.html
-12.1,Census Bureau basics,2,https://dcl-wrangle.stanford.edu/census.html#census-bureau-basics
-12.1.1,Decennial census,3,https://dcl-wrangle.stanford.edu/census.html#decennial-census
-12.1.2,ACS,3,https://dcl-wrangle.stanford.edu/census.html#acs
-12.1.3,Population estimates,3,https://dcl-wrangle.stanford.edu/census.html#population-estimates
-12.1.4,Choosing data,3,https://dcl-wrangle.stanford.edu/census.html#choosing-data
-12.2,tidycensus,2,https://dcl-wrangle.stanford.edu/census.html#tidycensus
-12.2.1,Specify a dataset,3,https://dcl-wrangle.stanford.edu/census.html#specify-a-dataset
-12.2.2,Find variables,3,https://dcl-wrangle.stanford.edu/census.html#find-variables
-12.2.3,Get data,3,https://dcl-wrangle.stanford.edu/census.html#get-data
-12.3,Population estimates,2,https://dcl-wrangle.stanford.edu/census.html#population-estimates-1
-12.3.1,Choose data,3,https://dcl-wrangle.stanford.edu/census.html#choose-data
-12.3.2,Craft your request,3,https://dcl-wrangle.stanford.edu/census.html#craft-your-request-1
-12.3.3,Read the data into R,3,https://dcl-wrangle.stanford.edu/census.html#read-the-data-into-r-1
-13,Google Sheets,1,https://dcl-wrangle.stanford.edu/googlesheets.html
-13.1,Reading,2,https://dcl-wrangle.stanford.edu/googlesheets.html#reading
-13.2,Writing,2,https://dcl-wrangle.stanford.edu/googlesheets.html#writing
-13.3,Finding sheets,2,https://dcl-wrangle.stanford.edu/googlesheets.html#finding-sheets
-13.4,Authentication,2,https://dcl-wrangle.stanford.edu/googlesheets.html#authentication
-13.4.1,Interactive session,3,https://dcl-wrangle.stanford.edu/googlesheets.html#interactive-session
-13.4.2,Non-interactive session,3,https://dcl-wrangle.stanford.edu/googlesheets.html#non-interactive-session
-14,vroom,1,https://dcl-wrangle.stanford.edu/read-write.html
-14.1,Read,2,https://dcl-wrangle.stanford.edu/read-write.html#read
-14.2,Write,2,https://dcl-wrangle.stanford.edu/read-write.html#write
+5,Basic pivoting,1,https://dcl-wrangle.stanford.edu/pivot-basic.html
+5.1,Longer,2,https://dcl-wrangle.stanford.edu/pivot-basic.html#longer
+5.2,Wider,2,https://dcl-wrangle.stanford.edu/pivot-basic.html#wider
+5.3,Missing values,2,https://dcl-wrangle.stanford.edu/pivot-basic.html#missing-values
+6,Advanced pivoting,1,https://dcl-wrangle.stanford.edu/pivot-advanced.html
+6.1,Longer,2,https://dcl-wrangle.stanford.edu/pivot-advanced.html#longer-1
+6.1.1,Types,3,https://dcl-wrangle.stanford.edu/pivot-advanced.html#types
+6.1.2,Prefixes,3,https://dcl-wrangle.stanford.edu/pivot-advanced.html#prefixes
+6.1.3,Multiple values,3,https://dcl-wrangle.stanford.edu/pivot-advanced.html#multiple-values
+6.2,Wider,2,https://dcl-wrangle.stanford.edu/pivot-advanced.html#wider-1
+6.2.1,Prefixes,3,https://dcl-wrangle.stanford.edu/pivot-advanced.html#prefixes-1
+6.2.2,Multiple values,3,https://dcl-wrangle.stanford.edu/pivot-advanced.html#multiple-values-1
+6.2.3,id_cols,3,https://dcl-wrangle.stanford.edu/pivot-advanced.html#id_cols
+7,Introduction,1,https://dcl-wrangle.stanford.edu/scoped-verbs.html
+8,Basics,1,https://dcl-wrangle.stanford.edu/scoped-basics.html
+8.0.1,_all and _at scoped verbs,3,https://dcl-wrangle.stanford.edu/scoped-basics.html#all-and-_at-scoped-verbs
+8.0.2,Scoped mutate(),3,https://dcl-wrangle.stanford.edu/scoped-basics.html#scoped-mutate
+8.0.3,Anonymous functions,3,https://dcl-wrangle.stanford.edu/scoped-basics.html#anonymous-functions
+8.0.4,...,3,https://dcl-wrangle.stanford.edu/scoped-basics.html#section
+8.0.5,Multiple functions,3,https://dcl-wrangle.stanford.edu/scoped-basics.html#multiple-functions
+8.0.6,Scoped select() and rename(),3,https://dcl-wrangle.stanford.edu/scoped-basics.html#scoped-select-and-rename
+9,Predicates,1,https://dcl-wrangle.stanford.edu/scoped-predicate.html
+9.1,_if,2,https://dcl-wrangle.stanford.edu/scoped-predicate.html#if
+9.1.1,Anonymous predicate functions,3,https://dcl-wrangle.stanford.edu/scoped-predicate.html#anonymous-predicate-functions
+9.2,Scoped filter(),2,https://dcl-wrangle.stanford.edu/scoped-predicate.html#scoped-filter
+9.2.1,Specifying rows with all_vars() and any_vars(),3,https://dcl-wrangle.stanford.edu/scoped-predicate.html#specifying-rows-with-all_vars-and-any_vars
+9.2.2,filter_if(),3,https://dcl-wrangle.stanford.edu/scoped-predicate.html#filter_if
+10,Cheat sheet,1,https://dcl-wrangle.stanford.edu/scoped-cheat-sheet.html
+10.1,Suffixes,2,https://dcl-wrangle.stanford.edu/scoped-cheat-sheet.html#suffixes
+10.2,Examples,2,https://dcl-wrangle.stanford.edu/scoped-cheat-sheet.html#examples
+10.2.1,"mutate(), summarize(), select(), and rename()",3,https://dcl-wrangle.stanford.edu/scoped-cheat-sheet.html#mutate-summarize-select-and-rename
+10.2.2,filter(),3,https://dcl-wrangle.stanford.edu/scoped-cheat-sheet.html#filter
+11,Introduction,1,https://dcl-wrangle.stanford.edu/apis.html
+12,API basics,1,https://dcl-wrangle.stanford.edu/api-basics.html
+12.1,What is an API?,2,https://dcl-wrangle.stanford.edu/api-basics.html#what-is-an-api
+12.2,Find your API,2,https://dcl-wrangle.stanford.edu/api-basics.html#find-your-api
+12.3,Craft your request,2,https://dcl-wrangle.stanford.edu/api-basics.html#craft-your-request
+12.3.1,Base request,3,https://dcl-wrangle.stanford.edu/api-basics.html#base-request
+12.3.2,Parameters,3,https://dcl-wrangle.stanford.edu/api-basics.html#parameters
+12.4,Test your request,2,https://dcl-wrangle.stanford.edu/api-basics.html#test-your-request
+12.5,Read the data into R,2,https://dcl-wrangle.stanford.edu/api-basics.html#read-the-data-into-r
+12.5.1,JSON data,3,https://dcl-wrangle.stanford.edu/api-basics.html#json-data
+12.5.2,All formats,3,https://dcl-wrangle.stanford.edu/api-basics.html#all-formats
+12.6,Next steps,2,https://dcl-wrangle.stanford.edu/api-basics.html#next-steps
+13,U.S. Census Bureau,1,https://dcl-wrangle.stanford.edu/census.html
+13.1,Census Bureau basics,2,https://dcl-wrangle.stanford.edu/census.html#census-bureau-basics
+13.1.1,Decennial census,3,https://dcl-wrangle.stanford.edu/census.html#decennial-census
+13.1.2,ACS,3,https://dcl-wrangle.stanford.edu/census.html#acs
+13.1.3,Population estimates,3,https://dcl-wrangle.stanford.edu/census.html#population-estimates
+13.1.4,Choosing data,3,https://dcl-wrangle.stanford.edu/census.html#choosing-data
+13.2,tidycensus,2,https://dcl-wrangle.stanford.edu/census.html#tidycensus
+13.2.1,Specify a dataset,3,https://dcl-wrangle.stanford.edu/census.html#specify-a-dataset
+13.2.2,Find variables,3,https://dcl-wrangle.stanford.edu/census.html#find-variables
+13.2.3,Get data,3,https://dcl-wrangle.stanford.edu/census.html#get-data
+13.3,Population estimates,2,https://dcl-wrangle.stanford.edu/census.html#population-estimates-1
+13.3.1,Choose data,3,https://dcl-wrangle.stanford.edu/census.html#choose-data
+13.3.2,Craft your request,3,https://dcl-wrangle.stanford.edu/census.html#craft-your-request-1
+13.3.3,Read the data into R,3,https://dcl-wrangle.stanford.edu/census.html#read-the-data-into-r-1
+14,Google Sheets,1,https://dcl-wrangle.stanford.edu/googlesheets.html
+14.1,Reading,2,https://dcl-wrangle.stanford.edu/googlesheets.html#reading
+14.2,Writing,2,https://dcl-wrangle.stanford.edu/googlesheets.html#writing
+14.3,Finding sheets,2,https://dcl-wrangle.stanford.edu/googlesheets.html#finding-sheets
+14.4,Authentication,2,https://dcl-wrangle.stanford.edu/googlesheets.html#authentication
+14.4.1,Interactive session,3,https://dcl-wrangle.stanford.edu/googlesheets.html#interactive-session
+14.4.2,Non-interactive session,3,https://dcl-wrangle.stanford.edu/googlesheets.html#non-interactive-session
+15,vroom,1,https://dcl-wrangle.stanford.edu/read-write.html
+15.1,Read,2,https://dcl-wrangle.stanford.edu/read-write.html#read
+15.2,Write,2,https://dcl-wrangle.stanford.edu/read-write.html#write
