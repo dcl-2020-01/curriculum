@@ -14,6 +14,8 @@ In this unit, you'll learn about the remaining scoped verbs: those that end in
 
 ## Readings
 
-  * [Predicates](https://dcl-wrangle.stanford.edu/scoped_predicate.html) [wrangle-9]
+  * [Predicates](https://dcl-wrangle.stanford.edu/scoped-predicate.html) [wrangle-9]
+
+  * [Cheat sheet](https://dcl-wrangle.stanford.edu/scoped-cheat-sheet.html) [wrangle-10]
 
 

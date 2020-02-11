@@ -13,6 +13,6 @@ and learn how to apply the pivot functions to more complex tidying tasks.
 
 ## Readings
 
-  * [Advanced pivoting](https://dcl-wrangle.stanford.edu/pivot_advanced.html) [wrangle-6]
+  * [Advanced pivoting](https://dcl-wrangle.stanford.edu/pivot-advanced.html) [wrangle-6]
 
 

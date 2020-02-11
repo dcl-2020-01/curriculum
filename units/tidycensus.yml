@@ -8,6 +8,6 @@ desc: |
   to use the tidycensus package to easily access ACS and census data from R. 
   
 readings:
-- book: wrangle-11.1
 - book: wrangle-12.1
-- book: wrangle-12.2
+- book: wrangle-13.1
+- book: wrangle-13.2

@@ -14,6 +14,6 @@ be two of the most important tools in your tidying toolbox.
 
 ## Readings
 
-  * [Basic pivoting](https://dcl-wrangle.stanford.edu/pivot_basic.html) [wrangle-5]
+  * [Basic pivoting](https://dcl-wrangle.stanford.edu/pivot-basic.html) [wrangle-5]
 
 

@@ -15,8 +15,8 @@ from APIs, and then discuss the Population Estimates APIs in more detail.
 
 ## Readings
 
-  * [API basics](https://dcl-wrangle.stanford.edu/api-basics.html) [wrangle-11]
+  * [API basics](https://dcl-wrangle.stanford.edu/api-basics.html) [wrangle-12]
 
-  * [Population estimates](https://dcl-wrangle.stanford.edu/census.html#population-estimates-1) [wrangle-12.3]
+  * [Population estimates](https://dcl-wrangle.stanford.edu/census.html#population-estimates-1) [wrangle-13.3]
 
 
