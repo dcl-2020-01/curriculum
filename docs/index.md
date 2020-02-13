@@ -294,4 +294,30 @@ title: Theme index
   <td colspan="5"></td>
 </tr>
 </tbody>
+<tbody>
+<tr>
+<td id='week-7'>7</td>
+  <td colspan="4"></td>
+  <td colspan="6"><a class="program" href="purrr-parallel.html">purrr map with multiple inputs</a></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="timespans.html">Time spans</a></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="rvest.html">rvest</a></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="2"></td>
+  <td colspan="6"><a class="visualize" href="spatial-vis.html">Spatial visualization</a></td>
+  <td colspan="4"></td>
+</tr>
+</tbody>
 </table>

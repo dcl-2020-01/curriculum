@@ -1,4 +1,4 @@
-cur-week: 06
+cur-week: 07
 
 weeks:
   week-01:
@@ -56,13 +56,13 @@ weeks:
   - census-bureau-apis
 
   week-07:
-  - timespans
-  - string-details
-  - spatial-vis
-  - model-multivariate
   - purrr-parallel
-
+  - timespans
+  - rvest
+  - spatial-vis
+  
   week-08:
+  - string-details
   - model-many
   - separate-unite
   - parse-details
