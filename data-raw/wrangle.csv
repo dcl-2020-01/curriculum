@@ -84,6 +84,14 @@ id,title,depth,href
 14.4,Authentication,2,https://dcl-wrangle.stanford.edu/googlesheets.html#authentication
 14.4.1,Interactive session,3,https://dcl-wrangle.stanford.edu/googlesheets.html#interactive-session
 14.4.2,Non-interactive session,3,https://dcl-wrangle.stanford.edu/googlesheets.html#non-interactive-session
-15,vroom,1,https://dcl-wrangle.stanford.edu/read-write.html
-15.1,Read,2,https://dcl-wrangle.stanford.edu/read-write.html#read
-15.2,Write,2,https://dcl-wrangle.stanford.edu/read-write.html#write
+15,vroom,1,https://dcl-wrangle.stanford.edu/vroom.html
+15.1,Read,2,https://dcl-wrangle.stanford.edu/vroom.html#read
+15.2,Write,2,https://dcl-wrangle.stanford.edu/vroom.html#write
+16,rvest,1,https://dcl-wrangle.stanford.edu/rvest.html
+16.1,Web page basics,2,https://dcl-wrangle.stanford.edu/rvest.html#web-page-basics
+16.1.1,HTML,3,https://dcl-wrangle.stanford.edu/rvest.html#html
+16.1.2,CSS,3,https://dcl-wrangle.stanford.edu/rvest.html#css
+16.2,Scrape data with rvest,2,https://dcl-wrangle.stanford.edu/rvest.html#scrape-data-with-rvest
+16.2.1,Read HTML,3,https://dcl-wrangle.stanford.edu/rvest.html#read-html
+16.2.2,Find the CSS selector,3,https://dcl-wrangle.stanford.edu/rvest.html#find-the-css-selector
+16.2.3,Extract the table,3,https://dcl-wrangle.stanford.edu/rvest.html#extract-the-table

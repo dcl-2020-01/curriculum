@@ -1,0 +1,12 @@
+title: rvest
+theme: wrangle
+needs: [parse-basics]
+
+desc: |
+  
+  Sometimes, data will be stored in a table or other format on a web page. You 
+  can use the handy package rvest to read in HTML, extract specific elements, and
+  turn them into tibbles.
+  
+readings:
+- book: wrangle-16
