@@ -16,6 +16,6 @@ makes reading and writing large data files much faster.
 
   * [Scripts](https://dcl-workflow.stanford.edu/scripts.html) [workflow-7]
 
-  * [vroom](https://dcl-wrangle.stanford.edu/read-write.html) [wrangle-15]
+  * [vroom](https://dcl-wrangle.stanford.edu/vroom.html) [wrangle-15]
 
 
