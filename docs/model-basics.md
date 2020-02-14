@@ -17,14 +17,14 @@ relatively few parameters can capture much of the complexity of a dataset. By
 finding a model that is a good approximation, you can gain insights into your
 data.
 
-We're not going to rigorously cover the mathematical foundations of models.
-Instead, we'll give you some intuition for how models approximate data and
-show you some useful tidyverse tools for fitting and working with models.
+We're not going to rigorously cover the mathematical foundations of models. In
+this unit, we'll only over the untuition for how models approximate data, as 
+well as how to conduct EDA when you know you're eventually going to fit a model.
 
 ## Readings
 
-  * [Introduction](http://r4ds.had.co.nz/model-basics.html#introduction-15) [r4ds-23.1]
+  * [Model basics](https://dcl-model.stanford.edu/model_basics.html) [model-1]
 
-  * [A simple model](http://r4ds.had.co.nz/model-basics.html#a-simple-model) [r4ds-23.2]
+  * [Understand your data](https://dcl-model.stanford.edu/understand_your_data.html) [model-2]
 
 
