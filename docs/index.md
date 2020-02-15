@@ -315,6 +315,12 @@ title: Theme index
 </tr>
 <tr>
 <td></td>
+  <td colspan="3"></td>
+  <td colspan="6"><a class="model" href="model-basics.html">Model basics</a></td>
+  <td colspan="3"></td>
+</tr>
+<tr>
+<td></td>
   <td colspan="2"></td>
   <td colspan="6"><a class="visualize" href="spatial-vis.html">Spatial visualization</a></td>
   <td colspan="4"></td>

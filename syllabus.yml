@@ -59,6 +59,7 @@ weeks:
   - purrr-parallel
   - timespans
   - rvest
+  - model-basics
   - spatial-vis
   
   week-08:
