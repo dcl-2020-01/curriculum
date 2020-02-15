@@ -1,6 +1,6 @@
 title: Many models
 theme: model
-needs: [model-basics, list-cols]
+needs: []
 
 desc: |
   Instead of using one big, complicated visualization, it's often better to

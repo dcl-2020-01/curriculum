@@ -1,6 +1,6 @@
 title: Fitting and visualizing models
 theme: model
-needs: [eda-2d, model-basics]
+needs: []
 
 desc: |
   It is possible to understand some models (particularly popular statistical

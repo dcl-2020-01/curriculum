@@ -5,7 +5,6 @@ title: Fitting and visualizing models
 <!-- Generated automatically from model-vis.yml. Do not edit by hand -->
 
 # Fitting and visualizing models <small class='model'>[model]</small>
-<small>(Builds on: [Exploratory data analysis (2D)](eda-2d.md), [Model basics](model-basics.md))</small>  
 <small>(Leads to: [Models with multiple variables](model-multivariate.md))</small>
 
 It is possible to understand some models (particularly popular statistical

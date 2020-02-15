@@ -5,8 +5,7 @@ title: Model basics
 <!-- Generated automatically from model-basics.yml. Do not edit by hand -->
 
 # Model basics <small class='model'>[model]</small>
-<small>(Builds on: [Setup](setup.md))</small>  
-<small>(Leads to: [Many models](model-many.md), [Fitting and visualizing models](model-vis.md))</small>
+<small>(Builds on: [Setup](setup.md))</small>
 
 It's hard to understand data just by looking at it in a tibble. Visualizations
 are one way to gain a better understanding of the relationships present in
