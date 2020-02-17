@@ -13,7 +13,7 @@ library(tidyverse)
 library(sf)
 ```
 
-In Spatial Basics, you learned how to plot spatial data using the `plot()` function. Now, we'll show you how to visualize spatial data using `geom_sf()`. `geom_sf()` has the advantage of being part of ggplot2, meaning you can layer geoms, use scales functions to change colors, easily tweak legends, alter the theme, etc.
+In _Spatial basics_, you learned how to plot spatial data using the `plot()` function. Now, we'll show you how to visualize spatial data using `geom_sf()`. `geom_sf()` has the advantage of being part of ggplot2, meaning you can layer geoms, use scales functions to change colors, easily tweak legends, alter the theme, etc.
 
 ## `geom_sf()`
 
@@ -47,10 +47,10 @@ The Earth is not flat, but your plots are. To create effective maps, you'll need
 Latitude and longitude coordinates are unprojected. Each point picked out by a longitude and latitude combination specifies a point on an ellipsoid. This means that plots of large geographic areas, like the U.S., will look strange when plotted in longitude-latitude. 
 
 ```{r}
-boundaries_longlat <- 
+states_longlat <- 
   ussf::boundaries(geography = "state", projection = "longlat")
  
-boundaries_longlat %>% 
+states_longlat %>% 
   filter(!(NAME %in% c("Alaska", "Hawaii"))) %>% 
   ggplot() +
   geom_sf()
@@ -59,9 +59,9 @@ boundaries_longlat %>%
 A different projection will improve our map substantially. When mapping the entire U.S., we recommend U.S. Albers. U.S. Albers is the default for the ussf package. 
 
 ```{r}
-boundaries_albers <- ussf::boundaries(geography = "state")
+states_albers <- ussf::boundaries(geography = "state")
 
-boundaries_albers %>% 
+states_albers %>% 
   ggplot() +
   geom_sf()
 ```
@@ -73,7 +73,7 @@ ussf also scales Alaska and Hawaii and places them below the continental U.S. Th
 If you're visualizing a small geographic area, like North Carolina, you can just use longitude and latitude. The Earth is approximately flat for a small enough area.
 
 ```{r}
-boundaries_longlat %>% 
+states_longlat %>% 
   filter(NAME == "North Carolina") %>% 
   ggplot() +
   geom_sf()
@@ -82,37 +82,27 @@ boundaries_longlat %>%
 However, California covers a bit too much area for this to work. On its own, California also looks strange if projected with U.S. Albers. 
 
 ```{r}
-boundaries_albers %>% 
+states_albers %>% 
   filter(NAME == "California") %>%
   ggplot() +
   geom_sf()
 ```
 
-Luckily, there's an Albers equal area projection just for California, called California Albers. You can specify coordinate reference systems, which include projections, using _proj4 strings_. Here's the proj4 string for California Albers.
+Luckily, there's an Albers equal area projection just for California, called California Albers. You can specify the projection and coordinate reference system for a map using _PROJ strings_. Here's the PROJ string for California Albers.
 
 ```{r}
 CA_ALBERS <- 
-  "+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
+  "+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"
 ```
 
-The [Spatial Reference](https://spatialreference.org/) website is a good place to look up proj4 strings.
+_aea_ stands for _Albers equal area_, and we are using the [WGS84 coordinate reference system](https://en.wikipedia.org/wiki/World_Geodetic_System). The [Spatial Reference](https://spatialreference.org/) website is a good place to look up PROJ strings. 
 
-We can change the projection inside `coord_sf()`.
-
-```{r}
-boundaries_albers %>% 
-  filter(NAME == "California") %>%
-  ggplot() +
-  geom_sf() +
-  coord_sf(crs = CA_ALBERS)
-```
-
-Alternatively, we can change the projection before plotting with `st_transform()`.
+We can change the projection before plotting with `st_transform()`.
 
 ```{r}
-boundaries_albers %>% 
+states_albers %>% 
+  filter(NAME == "California") %>% 
   st_transform(crs = CA_ALBERS) %>% 
-  filter(NAME == "California") %>%
   ggplot() +
   geom_sf() 
 ```
@@ -148,12 +138,12 @@ population
 We'll join our population data with boundaries from `ussf::boundaries()`. Because we're looking at a smaller area, we can use a higher resolution than the default.
 
 ```{r}
-FIPS_CA <- 06L
-RESOLUTION <- "5m"
+FIPS_CA <- 6L
 
-counties <-
-  ussf::boundaries(geography = "county", resolution = RESOLUTION) %>% 
+ca_counties <-
+  ussf::boundaries(geography = "county", resolution = "5m") %>% 
   filter(as.integer(STATEFP) == FIPS_CA) %>% 
+  st_transform(crs = CA_ALBERS) %>% 
   transmute(
     fips = as.integer(GEOID),
     area_land = ALAND
@@ -161,22 +151,21 @@ counties <-
   left_join(population, by = "fips") %>% 
   select(fips, name, population, area_land) 
 
-counties
+ca_counties
 ```
 
 Note that you have to supply the boundaries data as the first argument of `left_join()`. If you supply it as the second, the tibble will lose its `sfc` class, and `geom_sf()` will no longer work as expected. 
 
 Just like with other geoms, you can supply additional aesthetics to `geom_sf()`. For polygons like the counties of California, `fill` is the most useful aesthetic. Let's visualize population density by county.
 
-`area_land` is in square meters, but we'll covert it to square miles.
+`area_land` is in square meters, but we'll express density in terms of population per square mile.
 
 ```{r}
-counties <-
-  counties %>% 
-  mutate(density = population / (area_land * 3.861e-7)) %>% 
-  st_transform(CA_ALBERS)
+ca_counties <-
+  ca_counties %>% 
+  mutate(density = population / (area_land * 3.861e-7))
   
-counties %>% 
+ca_counties %>% 
   ggplot(aes(fill = density)) +
   geom_sf(color = "white", size = 0.2)
 ```
@@ -188,17 +177,17 @@ Our map has a substantial problem. It's pretty much all the same color! It's ver
 Let's look at the distribution of `density`.
 
 ```{r}
-counties %>% 
+ca_counties %>% 
   ggplot(aes(density)) +
   geom_histogram(binwidth = 200) 
 ```
 
-Most of the counties are low density, but there are some outliers. By default, our sequential color scale will linear map colors between the minimum (`r format(min(counties$density, na.rm = TRUE), digits = 3)`) and the maximum (`r format(max(counties$density, na.rm = TRUE), digits = 3, big.mark = ",")`). (The extreme outlier is San Francisco County.)
+Most of the counties are low density, but there are some outliers. By default, our sequential color scale will linearly map colors between the minimum (`r format(min(ca_counties$density, na.rm = TRUE), digits = 3)`) and the maximum (`r format(max(ca_counties$density, na.rm = TRUE), digits = 3, big.mark = ",")`). (The extreme outlier is San Francisco County.)
 
 One way to deal with this problem is to cap `density` using `pmin()`. Now, everything above our cutoff will be represented with the same color. 
 
 ```{r}
-counties %>% 
+ca_counties %>% 
   mutate(density = pmin(density, 700)) %>% 
   ggplot(aes(fill = density)) +
   geom_sf() 
@@ -207,7 +196,7 @@ counties %>%
 This map makes it much easier to see the high density areas and compare the lower density areas to each other. A better color scale and thinner borders will also improve our plot.
 
 ```{r}
-counties %>% 
+ca_counties %>% 
   mutate(density = pmin(density, 700)) %>% 
   ggplot(aes(fill = density)) +
   geom_sf(size = 0.3) +
@@ -225,7 +214,7 @@ labels <- function(x) {
   if_else(x < 700, as.character(x), "700+")
 }
 
-counties %>% 
+ca_counties %>% 
   mutate(density = pmin(density, 700)) %>% 
   ggplot(aes(fill = density)) +
   geom_sf(size = 0.3) +
@@ -249,13 +238,13 @@ Just like with other geoms, you can layer `geom_sf()` with additional `geom_sf()
 Previously, we've been plotting multipolygons with `geom_sf()`.
 
 ```{r}
-class(counties$geometry)
+class(ca_counties$geometry)
 ```
 
 Recall that _sf_ stands for _simple features_ and there are many types of simple features, including multipolygons, lines, and points. If `geom_sf()` encounters a point, it will plot a point.
 
 ```{r}
-counties %>% 
+ca_counties %>% 
   ggplot() +
   geom_sf() +
   geom_sf(
@@ -268,10 +257,10 @@ You can also use `geom_sf_label()` or `geom_sf_text()` to add text to your maps.
 
 ```{r}
 lowest_density <-
-  counties %>% 
+  ca_counties %>% 
   top_n(n = -1, wt = density)
 
-counties %>% 
+ca_counties %>% 
   mutate(density = pmin(density, 700)) %>% 
   ggplot() +
   geom_sf() +
@@ -284,9 +273,6 @@ counties %>%
     hjust = -0.05,
     vjust = -0.1,
     data = lowest_density
-  ) +
-  scale_fill_gradientn(
-    colors = RColorBrewer::brewer.pal(n = 9, name = "PuRd")
   )
 ```
 
@@ -322,5 +308,3 @@ hawaii %>%
     ylim = c(18.9, 22.25)
   )
 ```
-
-

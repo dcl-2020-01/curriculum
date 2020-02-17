@@ -13,7 +13,7 @@ library(tidyverse)
 library(sf)
 ```
 
-In Spatial Basics, you learned how to plot spatial data using the
+In *Spatial basics*, you learned how to plot spatial data using the
 `plot()` function. Now, we’ll show you how to visualize spatial data
 using `geom_sf()`. `geom_sf()` has the advantage of being part of
 ggplot2, meaning you can layer geoms, use scales functions to change
@@ -85,10 +85,10 @@ ellipsoid. This means that plots of large geographic areas, like the
 U.S., will look strange when plotted in longitude-latitude.
 
 ``` r
-boundaries_longlat <- 
+states_longlat <- 
   ussf::boundaries(geography = "state", projection = "longlat")
  
-boundaries_longlat %>% 
+states_longlat %>% 
   filter(!(NAME %in% c("Alaska", "Hawaii"))) %>% 
   ggplot() +
   geom_sf()
@@ -101,9 +101,9 @@ the entire U.S., we recommend U.S. Albers. U.S. Albers is the default
 for the ussf package.
 
 ``` r
-boundaries_albers <- ussf::boundaries(geography = "state")
+states_albers <- ussf::boundaries(geography = "state")
 
-boundaries_albers %>% 
+states_albers %>% 
   ggplot() +
   geom_sf()
 ```
@@ -123,7 +123,7 @@ can just use longitude and latitude. The Earth is approximately flat for
 a small enough area.
 
 ``` r
-boundaries_longlat %>% 
+states_longlat %>% 
   filter(NAME == "North Carolina") %>% 
   ggplot() +
   geom_sf()
@@ -135,7 +135,7 @@ However, California covers a bit too much area for this to work. On its
 own, California also looks strange if projected with U.S. Albers.
 
 ``` r
-boundaries_albers %>% 
+states_albers %>% 
   filter(NAME == "California") %>%
   ggplot() +
   geom_sf()
@@ -144,42 +144,32 @@ boundaries_albers %>%
 ![](spatial-vis_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 Luckily, there’s an Albers equal area projection just for California,
-called California Albers. You can specify coordinate reference systems,
-which include projections, using *proj4 strings*. Here’s the proj4
-string for California Albers.
+called California Albers. You can specify the projection and coordinate
+reference system for a map using *PROJ strings*. Here’s the PROJ string
+for California Albers.
 
 ``` r
 CA_ALBERS <- 
-  "+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
+  "+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"
 ```
 
-The [Spatial Reference](https://spatialreference.org/) website is a good
-place to look up proj4 strings.
+*aea* stands for *Albers equal area*, and we are using the [WGS84
+coordinate reference
+system](https://en.wikipedia.org/wiki/World_Geodetic_System). The
+[Spatial Reference](https://spatialreference.org/) website is a good
+place to look up PROJ strings.
 
-We can change the projection inside `coord_sf()`.
-
-``` r
-boundaries_albers %>% 
-  filter(NAME == "California") %>%
-  ggplot() +
-  geom_sf() +
-  coord_sf(crs = CA_ALBERS)
-```
-
-![](spatial-vis_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
-
-Alternatively, we can change the projection before plotting with
-`st_transform()`.
+We can change the projection before plotting with `st_transform()`.
 
 ``` r
-boundaries_albers %>% 
+states_albers %>% 
+  filter(NAME == "California") %>% 
   st_transform(crs = CA_ALBERS) %>% 
-  filter(NAME == "California") %>%
   ggplot() +
   geom_sf() 
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ## Choropleths
 
@@ -214,12 +204,12 @@ We’ll join our population data with boundaries from
 use a higher resolution than the default.
 
 ``` r
-FIPS_CA <- 06L
-RESOLUTION <- "5m"
+FIPS_CA <- 6L
 
-counties <-
-  ussf::boundaries(geography = "county", resolution = RESOLUTION) %>% 
+ca_counties <-
+  ussf::boundaries(geography = "county", resolution = "5m") %>% 
   filter(as.integer(STATEFP) == FIPS_CA) %>% 
+  st_transform(crs = CA_ALBERS) %>% 
   transmute(
     fips = as.integer(GEOID),
     area_land = ALAND
@@ -227,26 +217,26 @@ counties <-
   left_join(population, by = "fips") %>% 
   select(fips, name, population, area_land) 
 
-counties
+ca_counties
 #> Simple feature collection with 58 features and 4 fields
 #> geometry type:  MULTIPOLYGON
 #> dimension:      XY
-#> bbox:           xmin: -2356114 ymin: -364429 xmax: -1646660 ymax: 845925.2
+#> bbox:           xmin: -373976.1 ymin: -604512.6 xmax: 539719.6 ymax: 450022.5
 #> epsg (SRID):    NA
-#> proj4string:    +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
+#> proj4string:    +proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +datum=WGS84 +units=m +no_defs
 #> # A tibble: 58 x 5
 #>     fips name         population area_land                              geometry
 #>    <int> <chr>             <dbl>     <dbl>                    <MULTIPOLYGON [m]>
-#>  1  6003 Alpine Coun…       1101   1.91e 9 (((-2057214 375142, -2051788 396071.…
-#>  2  6109 Tuolumne Co…      54539   5.75e 9 (((-2125130 314568.9, -2124226 31509…
-#>  3  6103 Tehama Coun…      63916   7.64e 9 (((-2250026 634688.8, -2249133 63486…
-#>  4  6105 Trinity Cou…      12535   8.23e 9 (((-2274422 717323.6, -2273844 71694…
-#>  5  6069 San Benito …      61537   3.60e 9 (((-2236619 235704.6, -2234853 23727…
-#>  6  6091 Sierra Coun…       2987   2.47e 9 (((-2109526 508054.3, -2108303 50907…
-#>  7  6017 El Dorado C…     190678   4.42e 9 (((-2139971 420499.5, -2135199 42774…
-#>  8  6053 Monterey Co…     435594   8.50e 9 (((-2274558 209809.8, -2273793 20985…
-#>  9  6057 Nevada Coun…      99696   2.48e 9 (((-2136749 479845.6, -2134308 48218…
-#> 10  6071 San Bernard…    2171603   5.20e10 (((-1979985 -163331, -1978420 -16371…
+#>  1  6003 Alpine Coun…       1101   1.91e 9 (((-6313.368 54862.23, -6288.982 763…
+#>  2  6109 Tuolumne Co…      54539   5.75e 9 (((-57354.39 -20135.31, -56604.18 -1…
+#>  3  6103 Tehama Coun…      63916   7.64e 9 (((-260050.9 256364.8, -259224.1 256…
+#>  4  6105 Trinity Cou…      12535   8.23e 9 (((-304746.5 329673.1, -304086.2 329…
+#>  5  6069 San Benito …      61537   3.60e 9 (((-146300.2 -123496.5, -144972.2 -1…
+#>  6  6091 Sierra Coun…       2987   2.47e 9 (((-90893.55 169529.6, -89956.05 170…
+#>  7  6017 El Dorado C…     190678   4.42e 9 (((-98544.49 77921.37, -95712.73 860…
+#>  8  6053 Monterey Co…     435594   8.50e 9 (((-176798.7 -157764.9, -176064 -157…
+#>  9  6057 Nevada Coun…      99696   2.48e 9 (((-110362.9 135706, -108569.7 13855…
+#> 10  6071 San Bernard…    2171603   5.20e10 (((204595.5 -443243.5, 206219.5 -443…
 #> # … with 48 more rows
 ```
 
@@ -258,20 +248,20 @@ Just like with other geoms, you can supply additional aesthetics to
 `geom_sf()`. For polygons like the counties of California, `fill` is the
 most useful aesthetic. Let’s visualize population density by county.
 
-`area_land` is in square meters, but we’ll covert it to square miles.
+`area_land` is in square meters, but we’ll express density in terms of
+population per square mile.
 
 ``` r
-counties <-
-  counties %>% 
-  mutate(density = population / (area_land * 3.861e-7)) %>% 
-  st_transform(CA_ALBERS)
+ca_counties <-
+  ca_counties %>% 
+  mutate(density = population / (area_land * 3.861e-7))
   
-counties %>% 
+ca_counties %>% 
   ggplot(aes(fill = density)) +
   geom_sf(color = "white", size = 0.2)
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 Maps like this one, in which geographic areas are colored according to
 some variable, are called *choropleths*.
@@ -283,15 +273,15 @@ counties, particularly for low-density counties.
 Let’s look at the distribution of `density`.
 
 ``` r
-counties %>% 
+ca_counties %>% 
   ggplot(aes(density)) +
   geom_histogram(binwidth = 200) 
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 Most of the counties are low density, but there are some outliers. By
-default, our sequential color scale will linear map colors between the
+default, our sequential color scale will linearly map colors between the
 minimum (1.49) and the maximum (18,849). (The extreme outlier is San
 Francisco County.)
 
@@ -300,20 +290,20 @@ Now, everything above our cutoff will be represented with the same
 color.
 
 ``` r
-counties %>% 
+ca_counties %>% 
   mutate(density = pmin(density, 700)) %>% 
   ggplot(aes(fill = density)) +
   geom_sf() 
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 This map makes it much easier to see the high density areas and compare
 the lower density areas to each other. A better color scale and thinner
 borders will also improve our plot.
 
 ``` r
-counties %>% 
+ca_counties %>% 
   mutate(density = pmin(density, 700)) %>% 
   ggplot(aes(fill = density)) +
   geom_sf(size = 0.3) +
@@ -322,7 +312,7 @@ counties %>%
   )
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 You can find this lighter color scale, and many others, at the
 [ColorBrewer website](http://colorbrewer2.org/#). You can also browse
@@ -337,7 +327,7 @@ labels <- function(x) {
   if_else(x < 700, as.character(x), "700+")
 }
 
-counties %>% 
+ca_counties %>% 
   mutate(density = pmin(density, 700)) %>% 
   ggplot(aes(fill = density)) +
   geom_sf(size = 0.3) +
@@ -352,7 +342,7 @@ counties %>%
   )
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 `theme_void()` is an easy way to remove the grid lines and tick mark
 labels, which aren’t necessary for someone to understand our map.
@@ -365,7 +355,7 @@ Just like with other geoms, you can layer `geom_sf()` with additional
 Previously, we’ve been plotting multipolygons with `geom_sf()`.
 
 ``` r
-class(counties$geometry)
+class(ca_counties$geometry)
 #> [1] "sfc_MULTIPOLYGON" "sfc"
 ```
 
@@ -374,7 +364,7 @@ of simple features, including multipolygons, lines, and points. If
 `geom_sf()` encounters a point, it will plot a point.
 
 ``` r
-counties %>% 
+ca_counties %>% 
   ggplot() +
   geom_sf() +
   geom_sf(
@@ -383,17 +373,17 @@ counties %>%
   )
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 You can also use `geom_sf_label()` or `geom_sf_text()` to add text to
 your maps.
 
 ``` r
 lowest_density <-
-  counties %>% 
+  ca_counties %>% 
   top_n(n = -1, wt = density)
 
-counties %>% 
+ca_counties %>% 
   mutate(density = pmin(density, 700)) %>% 
   ggplot() +
   geom_sf() +
@@ -406,13 +396,10 @@ counties %>%
     hjust = -0.05,
     vjust = -0.1,
     data = lowest_density
-  ) +
-  scale_fill_gradientn(
-    colors = RColorBrewer::brewer.pal(n = 9, name = "PuRd")
   )
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 ## Zooming
 
@@ -437,7 +424,7 @@ hawaii %>%
   geom_sf()
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 We can use `coord_sf()` to zoom in on the main islands.
 
@@ -451,5 +438,5 @@ hawaii %>%
   )
 ```
 
-![](spatial-vis_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](spatial-vis_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
