@@ -160,9 +160,9 @@ desc: "\n``` r\nlibrary(tidyverse)\nlibrary(sf)\n```\n\nIn *Spatial basics*, you
   you\ncan use `coord_sf()` to zoom in on your map.\n\nLet’s just plot Hawaii. We’ll
   use `projection = \"longlat\"` because\nHawaii covers only a small area. Also, setting
   `project = \"albers\"`\nwould scale Hawaii and place it under Texas.\n\n``` r\nhawaii
-  <-\n  ussf::boundaries(\n    geograph = \"cz\", \n    resolution = \"500k\", \n
-  \   projection = \"longlat\"\n  ) %>% \n  filter(state == \"HI\")\n\nhawaii %>%
-  \n  ggplot() +\n  geom_sf()\n```\n\n![](spatial-vis_files/figure-gfm/unnamed-chunk-22-1.png)<!--
+  <-\n  ussf::boundaries(\n    geography = \"state\", \n    resolution = \"500k\",
+  \n    projection = \"longlat\"\n  ) %>% \n  filter(NAME == \"Hawaii\")\n\nhawaii
+  %>% \n  ggplot() +\n  geom_sf()\n```\n\n![](spatial-vis_files/figure-gfm/unnamed-chunk-22-1.png)<!--
   -->\n\nWe can use `coord_sf()` to zoom in on the main islands.\n\n``` r\nhawaii
   %>% \n  ggplot() +\n  geom_sf() +\n  coord_sf(\n    xlim = c(-160.5, -154.7), \n
   \   ylim = c(18.9, 22.25)\n  )\n```\n\n![](spatial-vis_files/figure-gfm/unnamed-chunk-23-1.png)<!--

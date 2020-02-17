@@ -286,11 +286,11 @@ Let's just plot Hawaii. We'll use `projection = "longlat"` because Hawaii covers
 ```{r}
 hawaii <-
   ussf::boundaries(
-    geograph = "cz", 
+    geography = "state", 
     resolution = "500k", 
     projection = "longlat"
   ) %>% 
-  filter(state == "HI")
+  filter(NAME == "Hawaii")
 
 hawaii %>% 
   ggplot() +
