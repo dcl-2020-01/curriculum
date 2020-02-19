@@ -12,7 +12,7 @@ are one way to gain a better understanding of the relationships present in
 your data. Modeling is another approach. 
 
 We're not going to rigorously cover the mathematical foundations of models. In
-this unit, we'll only over the untuition for how models approximate data, as 
+this unit, we'll only over the intuition for how models approximate data, as 
 well as how to conduct EDA when you know you're eventually going to fit a model.
 
 ## Readings
