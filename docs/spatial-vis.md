@@ -413,11 +413,11 @@ would scale Hawaii and place it under Texas.
 ``` r
 hawaii <-
   ussf::boundaries(
-    geograph = "cz", 
+    geography = "state", 
     resolution = "500k", 
     projection = "longlat"
   ) %>% 
-  filter(state == "HI")
+  filter(NAME == "Hawaii")
 
 hawaii %>% 
   ggplot() +
