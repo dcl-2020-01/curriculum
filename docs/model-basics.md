@@ -5,7 +5,8 @@ title: Model basics
 <!-- Generated automatically from model-basics.yml. Do not edit by hand -->
 
 # Model basics <small class='model'>[model]</small>
-<small>(Builds on: [Setup](setup.md))</small>
+<small>(Builds on: [Setup](setup.md))</small>  
+<small>(Leads to: [Model EDA](model-eda.md))</small>
 
 It's hard to understand data just by looking at it in a tibble. Visualizations
 are one way to gain a better understanding of the relationships present in

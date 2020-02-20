@@ -1,0 +1,12 @@
+title: Model EDA
+theme: model
+needs: [model-basics]
+
+desc: |
+  There are an infinite number of models that could approximate your data. In this
+  unit, you'll learn how to narrow down your search by using EDA to understand 
+  the functional form of your data. You'll also learn how to specify functional
+  forms using formulas.
+  
+readings:
+- book: model-3
