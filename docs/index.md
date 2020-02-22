@@ -326,4 +326,24 @@ title: Theme index
   <td colspan="4"></td>
 </tr>
 </tbody>
+<tbody>
+<tr>
+<td id='week-8'>8</td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="parse-details.html">Parsing details</a></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="1"></td>
+  <td colspan="6"><a class="wrangle" href="string-details.html">String details</a></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="3"></td>
+  <td colspan="6"><a class="model" href="model-eda.html">Model EDA</a></td>
+  <td colspan="3"></td>
+</tr>
+</tbody>
 </table>

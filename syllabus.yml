@@ -1,4 +1,4 @@
-cur-week: 07
+cur-week: 08
 
 weeks:
   week-01:
@@ -63,10 +63,9 @@ weeks:
   - spatial-vis
   
   week-08:
-  - string-details
-  - model-many
-  - separate-unite
   - parse-details
+  - string-details
+  - model-eda
 
   week-09:
   - model-eval
