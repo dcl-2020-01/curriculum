@@ -64,8 +64,8 @@ weeks:
   
   week-08:
   - parse-details
-  - string-details
   - model-eda
+  - string-details
 
   week-09:
   - model-eval
