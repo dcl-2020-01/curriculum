@@ -10,5 +10,5 @@ desc: |
 needs: [string-basics]
 
 readings:
-- href: https://github.com/tidyverse/glue
+- href: https://stringr.tidyverse.org/reference/str_glue.html
   text: glue documentation

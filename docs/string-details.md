@@ -14,6 +14,6 @@ used without loading the glue package through the stringr functions
 
 ## Readings
 
-  * [glue documentation](https://github.com/tidyverse/glue)
+  * [glue documentation](https://stringr.tidyverse.org/reference/str_glue.html)
 
 
