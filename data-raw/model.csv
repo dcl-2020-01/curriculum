@@ -29,3 +29,14 @@ id,title,depth,href
 3.4.1,Functional form,3,https://dcl-model.stanford.edu/determine_functional_form.html#functional-form
 3.4.2,Visual checks,3,https://dcl-model.stanford.edu/determine_functional_form.html#visual-checks-1
 3.5,Summary,2,https://dcl-model.stanford.edu/determine_functional_form.html#summary-3
+4,Fitting basics,1,https://dcl-model.stanford.edu/fitting.html
+4.1,Tidymodeling,2,https://dcl-model.stanford.edu/fitting.html#tidymodeling
+4.2,Fit,2,https://dcl-model.stanford.edu/fitting.html#fit
+4.2.1,Assemble data,3,https://dcl-model.stanford.edu/fitting.html#assemble-data
+4.2.2,Specify model,3,https://dcl-model.stanford.edu/fitting.html#specify-model
+4.2.3,Fit,3,https://dcl-model.stanford.edu/fitting.html#fit-1
+4.3,Evaluate,2,https://dcl-model.stanford.edu/fitting.html#evaluate
+4.3.1,Visualize predictions,3,https://dcl-model.stanford.edu/fitting.html#visualize-predictions
+4.3.2,Visualize residuals,3,https://dcl-model.stanford.edu/fitting.html#visualize-residuals
+4.3.3,Error metrics,3,https://dcl-model.stanford.edu/fitting.html#error-metrics
+4.4,Code summary,2,https://dcl-model.stanford.edu/fitting.html#code-summary

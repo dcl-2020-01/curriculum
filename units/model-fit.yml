@@ -1,0 +1,11 @@
+title: Model fitting
+theme: model
+needs: [model-eda]
+
+desc: |
+  You've already learned how to visualize and explore your data in preparation
+  for basic modeling. Now, you'll learn how to fit models using a new set
+  of packages called tidymodels.
+  
+readings:
+- book: model-4
