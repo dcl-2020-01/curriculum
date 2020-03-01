@@ -346,4 +346,24 @@ title: Theme index
   <td colspan="5"></td>
 </tr>
 </tbody>
+<tbody>
+<tr>
+<td id='week-9'>9</td>
+  <td colspan="4"></td>
+  <td colspan="6"><a class="program" href="purrr-extras.html">Other purrr functions</a></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="5"></td>
+  <td colspan="6"><a class="communicate" href="rmarkdown-formats.html">R Markdown presentations</a></td>
+  <td colspan="1"></td>
+</tr>
+<tr>
+<td></td>
+  <td colspan="3"></td>
+  <td colspan="6"><a class="model" href="model-fit.html">Model fitting</a></td>
+  <td colspan="3"></td>
+</tr>
+</tbody>
 </table>

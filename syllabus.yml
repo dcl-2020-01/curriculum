@@ -1,4 +1,4 @@
-cur-week: 08
+cur-week: 09
 
 weeks:
   week-01:
@@ -68,12 +68,12 @@ weeks:
   - string-details
 
   week-09:
-  - model-eval
   - purrr-extras
+  - rmarkdown-formats
+  - model-fit
 
   week-10:
   - workflow-rmarkdown
-  - rmarkdown-formats
   - googlesheets
   - ggplot2-exts
   - dplyr-databases
