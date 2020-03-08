@@ -74,7 +74,7 @@ weeks:
 
   week-10:
   - workflow-rmarkdown
-  - googlesheets
   - ggplot2-exts
+  - googlesheets
   - dplyr-databases
   - learning-more
