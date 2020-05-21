@@ -8,7 +8,7 @@ desc: |
   you'll learn about the most important site for finding ggplot2 extensions.
 
 readings:
-- href: http://www.ggplot2-exts.org/gallery/
+- href: https://exts.ggplot2.tidyverse.org
   text: ggplot2 extensions gallery
   desc: >
     This is the best place to start if you discover a plot type
