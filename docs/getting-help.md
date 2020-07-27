@@ -14,6 +14,6 @@ questions effectively with the help of the reprex package.
 
 ## Readings
 
-  * [Setup](https://dcl-workflow.stanford.edu/project-setup.html) [workflow-5]
+  * [Getting help](https://dcl-workflow.stanford.edu/getting-help.html) [workflow-8]
 
 

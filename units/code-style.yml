@@ -16,7 +16,7 @@ desc: |
 #  make it very easy to apply the tidyverse style guide automatically.
 
 readings:
-- book: workflow-9
+- book: workflow-12
 
 - href: http://style.tidyverse.org
   text: Style guide

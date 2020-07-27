@@ -17,7 +17,7 @@ introduce you to a common style.
 
 ## Readings
 
-  * [Pull requests](https://dcl-workflow.stanford.edu/pull-requests.html) [workflow-9]
+  * [Style guide](https://dcl-workflow.stanford.edu/style-guide.html) [workflow-12]
 
   * [Style guide](http://style.tidyverse.org).
     The official tidyverse style guide includes more information than the DCL
